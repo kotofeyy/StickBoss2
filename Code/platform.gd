@@ -1,10 +1,10 @@
 class_name Platform extends Control
+
 @onready var center: ColorRect = $Center
 @onready var main: ColorRect = $Main
 
 
 func _ready() -> void:
-	
 	print("im there")
 	random_position()
 	random_size()

@@ -3,7 +3,6 @@ extends Node2D
 var platform_preload: PackedScene = preload("res://Scenes/platform.tscn")
 
 
-
 func _ready() -> void:
 	pass
 
