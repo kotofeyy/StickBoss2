@@ -21,7 +21,8 @@ color = Color(0.588053, 0, 0.117315, 1)
 [node name="Main" type="ColorRect" parent="."]
 layout_mode = 0
 offset_right = 90.0
-offset_bottom = 250.0
+offset_bottom = 285.0
+color = Color(0, 0, 0, 1)
 
 [node name="VisibleOnScreenEnabler2D" type="VisibleOnScreenEnabler2D" parent="."]
 

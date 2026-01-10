@@ -297,10 +297,10 @@ anchor_left = -1.496
 anchor_top = -15.042
 anchor_right = 10.95
 anchor_bottom = -13.125
-offset_left = -0.159996
-offset_top = 41.68
-offset_right = 2.0
-offset_bottom = 118.0
+offset_left = 249.84
+offset_top = 57.6801
+offset_right = 275.84
+offset_bottom = 132.68
 grow_horizontal = 2
 theme_override_constants/outline_size = 4
 theme_override_font_sizes/font_size = 70
@@ -310,7 +310,7 @@ horizontal_alignment = 1
 
 [node name="AnimatedSprite2D2" type="AnimatedSprite2D" parent="Player/Label"]
 z_index = -1
-position = Vector2(250, -12)
+position = Vector2(23.5, -22.0001)
 scale = Vector2(3.755, 3.755)
 sprite_frames = SubResource("SpriteFrames_u50mg")
 animation = &"Yellow"

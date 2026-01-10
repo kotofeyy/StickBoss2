@@ -27,6 +27,10 @@ window/size/viewport_height=888
 window/stretch/mode="canvas_items"
 window/stretch/aspect="keep_height"
 
+[gui]
+
+theme/custom_font="uid://cuaiqt3abubmb"
+
 [rendering]
 
 textures/canvas_textures/default_texture_filter=3

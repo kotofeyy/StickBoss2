@@ -2,12 +2,16 @@ extends Node2D
 
 
 @onready var player: Control = $Player
+@onready var animated_sprite_2d: AnimatedSprite2D = $Player/AnimatedSprite2D
+
+@onready var label_score: Label = $Player/Label
+
 
 
 var platform_preload: PackedScene = preload("res://Scenes/platform.tscn")
 var platfrom_1: Platform
 var platfrom_2: Platform
-
+var score := 0
 
 func _ready() -> void:
 	start_game()
@@ -28,12 +32,16 @@ func start_game() -> void:
 
 
 func move_player_to_platform() -> void:
+	animated_sprite_2d.play("walk")
 	var tween = get_tree().create_tween()
 	tween.tween_property(player, "position:x", platfrom_2.position.x + platfrom_2.get_size_x() - 20, 0.5)
 	tween.finished.connect(spawn_next_platform)
 
 
 func spawn_next_platform() -> void:
+	animated_sprite_2d.pause()
+	score += 1
+	label_score.text = str(score)
 	var min_pos_x = platfrom_2.position.x + 200
 	var max_pos_x = platfrom_2.position.x + 420
 	platfrom_2 = platform_preload.instantiate()
