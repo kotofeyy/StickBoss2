@@ -61,8 +61,12 @@ offset_left = 181.0
 offset_top = 607.0
 offset_right = 221.0
 offset_bottom = 647.0
+pivot_offset = Vector2(20, 40)
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Player"]
 scale = Vector2(4, 4)
 sprite_frames = SubResource("SpriteFrames_6bp64")
 animation = &"walk"
+
+[node name="Camera2D" type="Camera2D" parent="Player"]
+position = Vector2(190, -163)
