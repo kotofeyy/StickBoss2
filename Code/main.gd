@@ -4,7 +4,11 @@ extends Node2D
 @onready var player: Control = $Player
 @onready var animated_sprite_2d: AnimatedSprite2D = $Player/AnimatedSprite2D
 
-@onready var label_score: Label = $Player/Label
+@onready var label_score: Label = $CanvasLayer/Label
+@onready var animated_sprite_fire: AnimatedSprite2D = $CanvasLayer/Label/AnimatedSpriteFire
+
+@onready var parallax_background: ParallaxBackground = $ParallaxBackground
+@onready var parallax_background_2: ParallaxBackground = $ParallaxBackground2
 
 
 
@@ -13,13 +17,22 @@ var platfrom_1: Platform
 var platfrom_2: Platform
 var score := 0
 
+
 func _ready() -> void:
 	start_game()
+	start_burning_label()
 
 
 func start_game() -> void:
 	platfrom_1 = null
 	platfrom_2 = null
+	parallax_background.visible = false
+	parallax_background_2.visible = false
+	
+	match (randi_range(1,2)):
+		1: parallax_background.visible = true
+		2: parallax_background_2.visible = true
+	
 	platfrom_1 = platform_preload.instantiate()
 	platfrom_2 = platform_preload.instantiate()
 	
@@ -53,3 +66,11 @@ func spawn_next_platform() -> void:
 func _unhandled_input(event: InputEvent) -> void:
 	if Input.is_action_just_pressed("ui_accept"):
 		move_player_to_platform()
+
+
+func start_burning_label() -> void:
+	animated_sprite_fire.visible = true
+	var tween = get_tree().create_tween()
+	tween.set_loops()
+	tween.tween_property(label_score, "modulate", Color.YELLOW, 0.3)
+	tween.chain().tween_property(label_score, "modulate", Color.WHITE, 0.3)
