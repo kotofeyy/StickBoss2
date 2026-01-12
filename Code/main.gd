@@ -15,6 +15,7 @@ extends Node2D
 var platform_preload: PackedScene = preload("res://Scenes/platform.tscn")
 var platfrom_1: Platform
 var platfrom_2: Platform
+var center_platform_size_y = 6
 var score := 0
 var is_building := false
 var temp_stick_position
@@ -27,7 +28,8 @@ func _ready() -> void:
 
 func _physics_process(delta: float) -> void:
 	if Input.is_action_pressed("ui_up") or Input.is_action_pressed("mouse_action") or Input.emulate_touch_from_mouse:
-		stick.scale.y += 0.2
+		#stick.scale.y += 0.2
+		stick.size.y += 3
 		is_building = true
 		print("нажимаююю")
 
@@ -57,8 +59,8 @@ func start_game() -> void:
 	add_child(platfrom_2)
 	
 	player.position.x = (platfrom_1.position.x + platfrom_1.get_size_x()) - 20
-	stick.position.x = platfrom_1.position.x + platfrom_1.get_size_x()
-	temp_stick_position = platfrom_1.position.y - platfrom_1.get_size_y()
+	stick.position.x = (platfrom_1.position.x + platfrom_1.get_size_x() - stick.size.x / 2)
+	temp_stick_position = (platfrom_1.position.y - platfrom_1.get_size_y() + center_platform_size_y + stick.size.y)
 	stick.position.y = temp_stick_position
 
 
@@ -97,14 +99,32 @@ func start_burning_label() -> void:
 
 
 func rotate_stick() -> void:
+	stick.size.x = stick.size.x / 2
 	var tween = get_tree().create_tween()
 	tween.set_trans(Tween.TRANS_QUART)
-	tween.tween_property(stick, "rotation_degrees", 90, 0.3)
-	tween.finished.connect(move_player_to_platform)
+	tween.tween_property(stick, "rotation_degrees", 180 + 90, 0.3)
+	
+	if check_distance():
+		tween.finished.connect(move_player_to_platform)
+	else:
+		tween.finished.connect(stick_defeat)
+
+
+func stick_defeat() -> void:
+	var tween = get_tree().create_tween()
+	tween.set_trans(Tween.TRANS_ELASTIC)
+	tween.tween_property(stick, "size", Vector2(15.0, 15.0), 0.3)
 
 
 func reset_stick() -> void:
-	stick.position.x = platfrom_2.position.x + platfrom_2.get_size_x()
+	stick.position.x = (platfrom_2.position.x + platfrom_2.get_size_x() - stick.size.x / 2)
 	stick.position.y = temp_stick_position
-	stick.scale.y = 1
-	stick.rotation = 0
+	stick.size.x = 15
+	stick.size.y = 20
+	stick.rotation_degrees = 180
+
+
+func check_distance() -> bool:
+	var distance_min = abs(stick.position.x - platfrom_2.position.x)
+	var distance_max = distance_min + platfrom_2.get_size_x()
+	return stick.size.y > distance_min and stick.size.y < distance_max
