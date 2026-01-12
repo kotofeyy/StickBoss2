@@ -36,6 +36,10 @@ func get_size_x() -> int:
 	return base_platfrom.size.x
 
 
+func get_size_y() -> int:
+	return base_platfrom.size.y
+
+
 func _on_visible_on_screen_enabler_2d_screen_exited() -> void:
 	if can_remove:
 		queue_free()

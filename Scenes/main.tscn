@@ -352,6 +352,7 @@ texture = ExtResource("8_ynf5e")
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
 [node name="Button" type="Button" parent="CanvasLayer"]
+visible = false
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
@@ -395,16 +396,13 @@ animation = &"Yellow"
 autoplay = "Yellow"
 speed_scale = 3.0
 
-[node name="Stick" type="Control" parent="."]
-layout_mode = 3
-anchors_preset = 0
-offset_right = 40.0
-offset_bottom = 40.0
-
-[node name="ColorRect" type="ColorRect" parent="Stick"]
-layout_mode = 0
-offset_right = 40.0
-offset_bottom = 40.0
+[node name="Stick" type="ColorRect" parent="."]
+offset_left = 247.0
+offset_top = 549.0
+offset_right = 262.0
+offset_bottom = 569.0
+pivot_offset = Vector2(7, 20)
+color = Color(0, 0, 0, 1)
 
 [node name="ParallaxBackground2" type="ParallaxBackground" parent="."]
 visible = false
