@@ -3,10 +3,23 @@ extends Node2D
 
 @onready var player: Control = $Player
 @onready var animated_sprite_2d: AnimatedSprite2D = $Player/AnimatedSprite2D
+@onready var camera_2d: Camera2D = $Player/Camera2D
 @onready var stick: ColorRect = $Stick
+@onready var animated_sprite_bonus: AnimatedSprite2D = $AnimatedSpriteBonus
+@onready var audio_stream_player_hit: AudioStreamPlayer = $AudioStreamPlayerHit
+@onready var audio_stream_player_swipe: AudioStreamPlayer = $AudioStreamPlayerSwipe
+
+
+@onready var start_game_button: Button = $CanvasLayer/StartGameButton
+@onready var reset_game_button: Button = $CanvasLayer/Panel/MarginContainer/HBoxContainer/ResetGameButton
+@onready var end_game_panel: Panel = $CanvasLayer/EndGamePanel
+
 
 @onready var label_score: Label = $CanvasLayer/Label
+@onready var result_score_label: RichTextLabel = $CanvasLayer/EndGamePanel/MarginContainer/VBoxContainer/ResultScoreLabel
+@onready var best_score_label: RichTextLabel = $CanvasLayer/EndGamePanel/MarginContainer/VBoxContainer/BestScoreLabel
 @onready var animated_sprite_fire: AnimatedSprite2D = $CanvasLayer/Label/AnimatedSpriteFire
+@onready var x_bonus_label: Label = $XBonusLabel
 
 @onready var parallax_background: ParallaxBackground = $ParallaxBackground
 @onready var parallax_background_2: ParallaxBackground = $ParallaxBackground2
@@ -15,36 +28,45 @@ extends Node2D
 var platform_preload: PackedScene = preload("res://Scenes/platform.tscn")
 var platfrom_1: Platform
 var platfrom_2: Platform
-var center_platform_size_y = 6
+var center_platform_size_y := 6
 var score := 0
 var is_building := false
+var game_is_starting := false
 var temp_stick_position
+var current_hit: String
+var hit_center_counter := 0
+var tween_label_score: Tween
 
 
 func _ready() -> void:
-	start_game()
-	#start_burning_label()
+	pass
+	#start_game()
 
 
 func _physics_process(delta: float) -> void:
-	if Input.is_action_pressed("ui_up") or Input.is_action_pressed("mouse_action") or Input.emulate_touch_from_mouse:
-		#stick.scale.y += 0.2
-		stick.size.y += 3
-		is_building = true
-		print("нажимаююю")
+	if game_is_starting:
+		if Input.is_action_pressed("ui_up") or Input.is_action_pressed("mouse_action") or Input.emulate_touch_from_mouse:
+			stick.size.y += 3
+			is_building = true
 
-	if Input.is_action_just_released("ui_up") or Input.is_action_just_released("mouse_action"):
-		rotate_stick()
+
+		if Input.is_action_just_released("ui_up") or Input.is_action_just_released("mouse_action"):
+			rotate_stick()
 
 
 func start_game() -> void:
-	platfrom_1 = null
-	platfrom_2 = null
+	var childs = get_children()
+	for child in childs:
+		if child is Platform:
+			child.queue_free()
+
 	parallax_background.visible = false
 	parallax_background_2.visible = false
 	score = 0
+	hit_center_counter = 0
 	label_score.text = str(score)
 	animated_sprite_fire.visible = false
+	start_game_button.visible = false
 	
 	match (randi_range(1,2)):
 		1: parallax_background.visible = true
@@ -92,39 +114,132 @@ func _unhandled_input(event: InputEvent) -> void:
 
 func start_burning_label() -> void:
 	animated_sprite_fire.visible = true
-	var tween = get_tree().create_tween()
-	tween.set_loops()
-	tween.tween_property(label_score, "modulate", Color.YELLOW, 0.3)
-	tween.chain().tween_property(label_score, "modulate", Color.WHITE, 0.3)
+	var tween_fire_visible = get_tree().create_tween()
+	tween_fire_visible.tween_property(animated_sprite_fire, "modulate:a", 1, 1.0)
+	
+	tween_label_score = get_tree().create_tween()
+	tween_label_score.set_loops()
+	tween_label_score.tween_property(label_score, "modulate", Color.YELLOW, 0.3)
+	tween_label_score.chain().tween_property(label_score, "modulate", Color.WHITE, 0.3)
+
+
+func stop_burning_label() -> void:
+	var tween_fire_visible = get_tree().create_tween()
+	tween_fire_visible.tween_property(animated_sprite_fire, "modulate:a", 0, 1.0)
+	tween_fire_visible.finished.connect(func(): animated_sprite_fire.visible = false)
+	
+	if tween_label_score:
+		tween_label_score.kill()
 
 
 func rotate_stick() -> void:
+	audio_stream_player_swipe.play()
 	stick.size.x = stick.size.x / 2
 	var tween = get_tree().create_tween()
 	tween.set_trans(Tween.TRANS_QUART)
 	tween.tween_property(stick, "rotation_degrees", 180 + 90, 0.3)
 	
-	if check_distance():
+	if check_distance() == "hit":
 		tween.finished.connect(move_player_to_platform)
+		current_hit = "hit"
+		hit_center_counter = 0
+		stop_burning_label()
+	elif check_distance() == "hit_center":
+		tween.finished.connect(func(): 
+			move_player_to_platform()
+			hit_to_center()
+			)
 	else:
 		tween.finished.connect(stick_defeat)
 
 
+func hit_to_center() -> void:
+	camera_2d.applay_shake()
+	
+	x_bonus_label.position.y = platfrom_2.position.y
+	x_bonus_label.position.x = platfrom_2.position.x + randi_range(10,50)
+	x_bonus_label.modulate.a = 1.0
+	x_bonus_label.text = ["ВАУ!", "Круто!", "Класс!", "Еще!", "Превосходно!"].pick_random()
+		
+	var tween_x_bonus = get_tree().create_tween()
+	tween_x_bonus.set_parallel(true)
+	tween_x_bonus.tween_property(x_bonus_label, "position:y", platfrom_2.get_size_y() - 10, 1.0)
+	tween_x_bonus.tween_property(x_bonus_label, "modulate:a", 0, 1.0)
+	
+	if current_hit == "center":
+		hit_center_counter += 1
+	if hit_center_counter > 1:
+		start_burning_label()
+	
+	platfrom_2.hit_to_center()
+	spawn_bonus_effect()
+	audio_stream_player_hit.play()
+	current_hit = "center"
+	
+	
+	
+
+
 func stick_defeat() -> void:
+	camera_2d.camera_zoom_defeat()
 	var tween = get_tree().create_tween()
 	tween.set_trans(Tween.TRANS_ELASTIC)
-	tween.tween_property(stick, "size", Vector2(15.0, 15.0), 0.3)
+	tween.tween_property(stick, "size", Vector2(15.0, 20.0), 0.3)
+	tween.finished.connect(func(): 
+		game_is_starting = false
+		end_game_panel.visible = true
+		result_score_label.text = "Очки: " + str(score)
+		best_score_label.text = "Рекорд: " + str(score)
+		stick.rotation_degrees = 180
+		#platfrom_1.defeat()
+		platfrom_2.defeat()
+		#reset_stick()
+		)
 
 
 func reset_stick() -> void:
-	stick.position.x = (platfrom_2.position.x + platfrom_2.get_size_x() - stick.size.x / 2)
-	stick.position.y = temp_stick_position
 	stick.size.x = 15
 	stick.size.y = 20
+	stick.position.x = (platfrom_2.position.x + platfrom_2.get_size_x() - stick.size.x / 2)
+	stick.position.y = temp_stick_position
+	
 	stick.rotation_degrees = 180
 
 
-func check_distance() -> bool:
+func check_distance() -> String:
 	var distance_min = abs(stick.position.x - platfrom_2.position.x)
 	var distance_max = distance_min + platfrom_2.get_size_x()
-	return stick.size.y > distance_min and stick.size.y < distance_max
+	var center_position_platform = distance_min + platfrom_2.get_size_x() / 2 
+	var distance_min_center = abs(center_position_platform - (platfrom_2.get_size_x_center() / 2))
+	var distance_max_center = distance_min_center + platfrom_2.get_size_x_center()
+	
+	if stick.size.y >= distance_min and stick.size.y <= distance_max:
+		if stick.size.y >= distance_min_center and stick.size.y <= distance_max_center:
+			return "hit_center"
+		return "hit"
+	else:
+		return "miss"
+
+
+func spawn_bonus_effect() -> void:
+	var pos_x = platfrom_2.position.x + platfrom_2.get_size_x() / 2
+	var pos_y = stick.position.y
+	animated_sprite_bonus.position.x = pos_x
+	animated_sprite_bonus.position.y = pos_y
+	
+	animated_sprite_bonus.play("magic")
+
+
+func _on_start_game_button_pressed() -> void:
+	start_game()
+	await get_tree().create_timer(0.5).timeout
+	game_is_starting = true
+
+
+func _on_reset_game_button_pressed() -> void:
+	camera_2d.camera_zoom_start_game()
+	end_game_panel.visible = false
+	start_game()
+	await get_tree().create_timer(0.5).timeout
+	game_is_starting = true
+	#reset_stick()

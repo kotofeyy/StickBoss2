@@ -12,8 +12,8 @@ var can_remove: bool = false
 
 
 func _ready() -> void:
-	random_position()
-	random_size()
+	_random_position()
+	_random_size()
 	center.position.x = (base_platfrom.size.x - center.size.x) / 2
 	var tween = get_tree().create_tween()
 	tween.set_trans(Tween.TRANS_ELASTIC)
@@ -23,11 +23,11 @@ func _ready() -> void:
 	)
 
 
-func random_position() -> void:
+func _random_position() -> void:
 	position.x = randi_range(min_position_x, max_position_x)
 
 
-func random_size() -> void:
+func _random_size() -> void:
 	if base_platfrom:
 		base_platfrom.size.x = randi_range(40, 90)
 
@@ -40,6 +40,20 @@ func get_size_y() -> int:
 	return base_platfrom.size.y
 
 
+func get_size_x_center() -> int:
+	return center.size.x
+
+
 func _on_visible_on_screen_enabler_2d_screen_exited() -> void:
 	if can_remove:
 		queue_free()
+
+
+func hit_to_center() -> void:
+	center.position.y = 50
+
+
+func defeat() -> void:
+	var tween = get_tree().create_tween()
+	tween.set_trans(Tween.TRANS_ELASTIC)
+	tween.tween_property(self, "position:y", 900, 0.5)

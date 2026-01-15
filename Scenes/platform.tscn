@@ -12,10 +12,14 @@ offset_bottom = 1150.0
 script = ExtResource("1_1rc8e")
 
 [node name="Center" type="ColorRect" parent="."]
-layout_mode = 0
-offset_left = 37.5
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -11.0
 offset_top = -6.0
-offset_right = 52.5
+offset_right = 11.0
+grow_horizontal = 2
 color = Color(0.588053, 0, 0.117315, 1)
 
 [node name="BasePlatfrom" type="TextureRect" parent="."]
