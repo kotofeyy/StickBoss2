@@ -9,11 +9,8 @@ extends Node2D
 @onready var audio_stream_player_hit: AudioStreamPlayer = $AudioStreamPlayerHit
 @onready var audio_stream_player_swipe: AudioStreamPlayer = $AudioStreamPlayerSwipe
 
-
 @onready var start_game_button: Button = $CanvasLayer/StartGameButton
-@onready var reset_game_button: Button = $CanvasLayer/Panel/MarginContainer/HBoxContainer/ResetGameButton
 @onready var end_game_panel: Panel = $CanvasLayer/EndGamePanel
-
 
 @onready var label_score: Label = $CanvasLayer/Label
 @onready var result_score_label: RichTextLabel = $CanvasLayer/EndGamePanel/MarginContainer/VBoxContainer/ResultScoreLabel
@@ -175,9 +172,6 @@ func hit_to_center() -> void:
 	spawn_bonus_effect()
 	audio_stream_player_hit.play()
 	current_hit = "center"
-	
-	
-	
 
 
 func stick_defeat() -> void:
@@ -208,7 +202,7 @@ func reset_stick() -> void:
 
 func check_distance() -> String:
 	var distance_min = abs(stick.position.x - platfrom_2.position.x)
-	var distance_max = distance_min + platfrom_2.get_size_x()
+	var distance_max = (distance_min - stick.size.x / 2) + platfrom_2.get_size_x()
 	var center_position_platform = distance_min + platfrom_2.get_size_x() / 2 
 	var distance_min_center = abs(center_position_platform - (platfrom_2.get_size_x_center() / 2))
 	var distance_max_center = distance_min_center + platfrom_2.get_size_x_center()
@@ -227,7 +221,7 @@ func spawn_bonus_effect() -> void:
 	animated_sprite_bonus.position.x = pos_x
 	animated_sprite_bonus.position.y = pos_y
 	
-	animated_sprite_bonus.play("magic")
+	animated_sprite_bonus.play("action")
 
 
 func _on_start_game_button_pressed() -> void:
