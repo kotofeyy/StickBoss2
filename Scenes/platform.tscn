@@ -20,7 +20,7 @@ offset_left = -11.0
 offset_top = -6.0
 offset_right = 11.0
 grow_horizontal = 2
-color = Color(0.588053, 0, 0.117315, 1)
+color = Color(0, 0.767782, 0.465989, 1)
 
 [node name="BasePlatfrom" type="TextureRect" parent="."]
 layout_mode = 0

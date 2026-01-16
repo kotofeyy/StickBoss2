@@ -1,10 +1,9 @@
-[gd_scene load_steps=63 format=3 uid="uid://b4iychpqi6vow"]
+[gd_scene load_steps=49 format=3 uid="uid://b4iychpqi6vow"]
 
 [ext_resource type="Script" uid="uid://c42qrci2bvi5k" path="res://Code/main.gd" id="1_bo1nx"]
 [ext_resource type="Texture2D" uid="uid://b0jpo2epsdxav" path="res://Sprites/Basic Charakter Spritesheet.png" id="2_bo1nx"]
 [ext_resource type="Texture2D" uid="uid://bpiain87r47g5" path="res://Sprites/Backgrounds/Background_1/1.png" id="3_8gbba"]
 [ext_resource type="Script" uid="uid://cnq628e5ltt70" path="res://Code/camera_2d.gd" id="3_b3802"]
-[ext_resource type="Texture2D" uid="uid://cwnc1akd5g8ty" path="res://Sprites/Fire/Yellow.png" id="4_d1ilt"]
 [ext_resource type="Texture2D" uid="uid://5i8lqvyfwe46" path="res://Sprites/Backgrounds/Background_1/3.png" id="4_jjvhh"]
 [ext_resource type="Texture2D" uid="uid://cvsrkbkyec3rr" path="res://Sprites/Backgrounds/Background_1/5.png" id="5_kry3j"]
 [ext_resource type="Texture2D" uid="uid://dhtehegrpw4c0" path="res://Sprites/Backgrounds/Background_1/4.png" id="6_21xkr"]
@@ -91,6 +90,22 @@ border_width_right = 4
 border_width_bottom = 4
 border_color = Color(0, 0, 0, 1)
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ee4r6"]
+bg_color = Color(0.715532, 0.448679, 0.623223, 1)
+border_width_left = 4
+border_width_top = 4
+border_width_right = 4
+border_width_bottom = 4
+border_color = Color(0, 0, 0, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_gt3je"]
+bg_color = Color(0.715532, 0.448679, 0.623223, 1)
+border_width_left = 4
+border_width_top = 4
+border_width_right = 4
+border_width_bottom = 4
+border_color = Color(0, 0, 0, 1)
+
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_fevyy"]
 bg_color = Color(0.614365, 0.3613, 0.52836, 1)
 border_width_left = 4
@@ -98,112 +113,6 @@ border_width_top = 4
 border_width_right = 4
 border_width_bottom = 4
 border_color = Color(0, 0, 0, 1)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_u50mg"]
-atlas = ExtResource("4_d1ilt")
-region = Rect2(0, 0, 32, 48)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_cbgmd"]
-atlas = ExtResource("4_d1ilt")
-region = Rect2(32, 0, 32, 48)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_1w6v2"]
-atlas = ExtResource("4_d1ilt")
-region = Rect2(64, 0, 32, 48)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_ueoa1"]
-atlas = ExtResource("4_d1ilt")
-region = Rect2(96, 0, 32, 48)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_6vcvc"]
-atlas = ExtResource("4_d1ilt")
-region = Rect2(128, 0, 32, 48)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_7k868"]
-atlas = ExtResource("4_d1ilt")
-region = Rect2(160, 0, 32, 48)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_hpc6h"]
-atlas = ExtResource("4_d1ilt")
-region = Rect2(192, 0, 32, 48)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_kltya"]
-atlas = ExtResource("4_d1ilt")
-region = Rect2(224, 0, 32, 48)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_e08e2"]
-atlas = ExtResource("4_d1ilt")
-region = Rect2(256, 0, 32, 48)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_neg2b"]
-atlas = ExtResource("4_d1ilt")
-region = Rect2(288, 0, 32, 48)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_r33sp"]
-atlas = ExtResource("4_d1ilt")
-region = Rect2(320, 0, 32, 48)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_hdf80"]
-atlas = ExtResource("4_d1ilt")
-region = Rect2(352, 0, 32, 48)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_jwpg7"]
-atlas = ExtResource("4_d1ilt")
-region = Rect2(384, 0, 32, 48)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_k2e45"]
-atlas = ExtResource("4_d1ilt")
-region = Rect2(416, 0, 32, 48)
-
-[sub_resource type="SpriteFrames" id="SpriteFrames_u50mg"]
-animations = [{
-"frames": [{
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_u50mg")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_cbgmd")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_1w6v2")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_ueoa1")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_6vcvc")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_7k868")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_hpc6h")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_kltya")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_e08e2")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_neg2b")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_r33sp")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_hdf80")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_jwpg7")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_k2e45")
-}],
-"loop": true,
-"name": &"Yellow",
-"speed": 5.0
-}]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_b3802"]
 atlas = ExtResource("14_jkdf5")
@@ -343,6 +252,7 @@ animations = [{
 script = ExtResource("1_bo1nx")
 
 [node name="Player" type="Control" parent="."]
+visible = false
 layout_mode = 3
 anchors_preset = 0
 offset_left = 181.0
@@ -488,22 +398,17 @@ text = "Да"
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 8
+mouse_default_cursor_shape = 2
 theme_override_colors/font_color = Color(1, 1, 1, 1)
 theme_override_font_sizes/font_size = 55
+theme_override_styles/hover = SubResource("StyleBoxFlat_ee4r6")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_gt3je")
 theme_override_styles/normal = SubResource("StyleBoxFlat_fevyy")
 text = "Нет"
 
 [node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/EndGamePanel/MarginContainer"]
 layout_mode = 2
 size_flags_vertical = 0
-
-[node name="HeaderLabel" type="RichTextLabel" parent="CanvasLayer/EndGamePanel/MarginContainer/VBoxContainer"]
-custom_minimum_size = Vector2(0, 60)
-layout_mode = 2
-theme_override_colors/default_color = Color(0, 0, 0, 1)
-theme_override_font_sizes/normal_font_size = 55
-text = "Заново?"
-horizontal_alignment = 1
 
 [node name="ResultScoreLabel" type="RichTextLabel" parent="CanvasLayer/EndGamePanel/MarginContainer/VBoxContainer"]
 custom_minimum_size = Vector2(0, 50)
@@ -540,6 +445,14 @@ size_flags_horizontal = 4
 size_flags_vertical = 4
 texture = ExtResource("11_fevyy")
 
+[node name="HeaderLabel" type="RichTextLabel" parent="CanvasLayer/EndGamePanel/MarginContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 60)
+layout_mode = 2
+theme_override_colors/default_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/normal_font_size = 55
+text = "Заново?"
+horizontal_alignment = 1
+
 [node name="Label" type="Label" parent="CanvasLayer"]
 custom_minimum_size = Vector2(150, 150)
 anchors_preset = 5
@@ -556,17 +469,8 @@ text = "0
 "
 horizontal_alignment = 1
 
-[node name="AnimatedSpriteFire" type="AnimatedSprite2D" parent="CanvasLayer/Label"]
-visible = false
-z_index = -1
-position = Vector2(71, -8)
-scale = Vector2(3.755, 3.755)
-sprite_frames = SubResource("SpriteFrames_u50mg")
-animation = &"Yellow"
-autoplay = "Yellow"
-speed_scale = 3.0
-
 [node name="Stick" type="ColorRect" parent="."]
+visible = false
 offset_left = 247.0
 offset_top = 549.0
 offset_right = 262.0
@@ -628,7 +532,6 @@ speed_scale = 8.0
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("16_k12tt")
 volume_db = -15.0
-autoplay = true
 parameters/looping = true
 
 [node name="AudioStreamPlayerHit" type="AudioStreamPlayer" parent="."]

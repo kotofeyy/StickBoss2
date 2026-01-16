@@ -15,7 +15,6 @@ extends Node2D
 @onready var label_score: Label = $CanvasLayer/Label
 @onready var result_score_label: RichTextLabel = $CanvasLayer/EndGamePanel/MarginContainer/VBoxContainer/ResultScoreLabel
 @onready var best_score_label: RichTextLabel = $CanvasLayer/EndGamePanel/MarginContainer/VBoxContainer/BestScoreLabel
-@onready var animated_sprite_fire: AnimatedSprite2D = $CanvasLayer/Label/AnimatedSpriteFire
 @onready var x_bonus_label: Label = $XBonusLabel
 
 @onready var parallax_background: ParallaxBackground = $ParallaxBackground
@@ -62,8 +61,9 @@ func start_game() -> void:
 	score = 0
 	hit_center_counter = 0
 	label_score.text = str(score)
-	animated_sprite_fire.visible = false
 	start_game_button.visible = false
+	player.visible = true
+	stick.visible = true
 	
 	match (randi_range(1,2)):
 		1: parallax_background.visible = true
@@ -104,29 +104,37 @@ func spawn_next_platform() -> void:
 	add_child(platfrom_2)
 
 
-func _unhandled_input(event: InputEvent) -> void:
-	if Input.is_action_just_pressed("ui_accept"):
-		move_player_to_platform()
+func scores_to_scale() -> Vector2:
+	return Vector2(hit_center_counter * 1.5, hit_center_counter * 1.5)
 
 
 func start_burning_label() -> void:
-	animated_sprite_fire.visible = true
-	var tween_fire_visible = get_tree().create_tween()
-	tween_fire_visible.tween_property(animated_sprite_fire, "modulate:a", 1, 1.0)
+	#var tween_fire_visible = get_tree().create_tween()
+	#tween_fire_visible.tween_property(animated_sprite_fire, "modulate:a", 1.0, 1.0)
 	
 	tween_label_score = get_tree().create_tween()
 	tween_label_score.set_loops()
-	tween_label_score.tween_property(label_score, "modulate", Color.YELLOW, 0.3)
-	tween_label_score.chain().tween_property(label_score, "modulate", Color.WHITE, 0.3)
+	tween_label_score.tween_property(label_score, "self_modulate", Color.YELLOW, 0.3)
+	tween_label_score.chain().tween_property(label_score, "self_modulate", Color.WHITE, 0.3)
 
 
 func stop_burning_label() -> void:
-	var tween_fire_visible = get_tree().create_tween()
-	tween_fire_visible.tween_property(animated_sprite_fire, "modulate:a", 0, 1.0)
-	tween_fire_visible.finished.connect(func(): animated_sprite_fire.visible = false)
 	
-	if tween_label_score:
-		tween_label_score.kill()
+	if tween_label_score: tween_label_score.kill()
+	
+	label_score.add_theme_color_override("font_color", Color.WHITE)
+
+
+func label_score_shake() -> void:
+	label_score.pivot_offset = Vector2(label_score.size.x / 2, label_score.size.y / 2)
+	var tween = get_tree().create_tween()
+	tween.set_parallel(true)
+	
+	tween.tween_property(label_score, "scale", scores_to_scale(), 0.1)
+	tween.chain().tween_property(label_score, "scale", Vector2(1.0, 1.0), 0.1)
+	
+	tween.tween_property(label_score, "rotation_degrees", randi_range(-15, 15), 0.1)
+	tween.chain().tween_property(label_score, "rotation_degrees", 0, 0.1)
 
 
 func rotate_stick() -> void:
@@ -152,7 +160,7 @@ func rotate_stick() -> void:
 
 func hit_to_center() -> void:
 	camera_2d.applay_shake()
-	
+	label_score_shake()
 	x_bonus_label.position.y = platfrom_2.position.y
 	x_bonus_label.position.x = platfrom_2.position.x + randi_range(10,50)
 	x_bonus_label.modulate.a = 1.0
@@ -187,6 +195,7 @@ func stick_defeat() -> void:
 		stick.rotation_degrees = 180
 		#platfrom_1.defeat()
 		platfrom_2.defeat()
+		stick.visible = false
 		#reset_stick()
 		)
 
@@ -202,7 +211,7 @@ func reset_stick() -> void:
 
 func check_distance() -> String:
 	var distance_min = abs(stick.position.x - platfrom_2.position.x)
-	var distance_max = (distance_min - stick.size.x / 2) + platfrom_2.get_size_x()
+	var distance_max = (distance_min - stick.size.x) + platfrom_2.get_size_x()
 	var center_position_platform = distance_min + platfrom_2.get_size_x() / 2 
 	var distance_min_center = abs(center_position_platform - (platfrom_2.get_size_x_center() / 2))
 	var distance_max_center = distance_min_center + platfrom_2.get_size_x_center()
