@@ -1,4 +1,4 @@
-[gd_scene load_steps=49 format=3 uid="uid://b4iychpqi6vow"]
+[gd_scene load_steps=50 format=3 uid="uid://b4iychpqi6vow"]
 
 [ext_resource type="Script" uid="uid://c42qrci2bvi5k" path="res://Code/main.gd" id="1_bo1nx"]
 [ext_resource type="Texture2D" uid="uid://b0jpo2epsdxav" path="res://Sprites/Basic Charakter Spritesheet.png" id="2_bo1nx"]
@@ -14,8 +14,9 @@
 [ext_resource type="Texture2D" uid="uid://ce0ujjbqpde12" path="res://Sprites/Backgrounds/Background_2/1.png" id="12_fdnlq"]
 [ext_resource type="Texture2D" uid="uid://d3053pmsoadc7" path="res://Sprites/Backgrounds/Background_2/5.png" id="13_jkdf5"]
 [ext_resource type="Texture2D" uid="uid://db0gc1656c6ac" path="res://Sprites/PoisonCast_96x96.png" id="14_jkdf5"]
-[ext_resource type="AudioStream" uid="uid://djepgqvo7dvbt" path="res://Sounds/Floating Dream.mp3" id="16_k12tt"]
+[ext_resource type="AudioStream" uid="uid://bagq4ajruxin8" path="res://Sounds/defeat.wav" id="17_h1bgf"]
 [ext_resource type="AudioStream" uid="uid://ben86vgtbfkcj" path="res://Sounds/hit_to_center_2.wav" id="18_b3802"]
+[ext_resource type="AudioStream" uid="uid://ditnhd8xfre28" path="res://Sounds/score_x_up.wav" id="18_fevyy"]
 [ext_resource type="AudioStream" uid="uid://cey4r3r214cqx" path="res://Sounds/SwipeStick.mp3" id="20_hibaj"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_8gbba"]
@@ -453,21 +454,46 @@ theme_override_font_sizes/normal_font_size = 55
 text = "Заново?"
 horizontal_alignment = 1
 
-[node name="Label" type="Label" parent="CanvasLayer"]
+[node name="LabelScore" type="Label" parent="CanvasLayer"]
 custom_minimum_size = Vector2(150, 150)
 anchors_preset = 5
 anchor_left = 0.5
 anchor_right = 0.5
 offset_left = -75.0
-offset_top = 59.0
+offset_top = 80.0
 offset_right = 75.0
-offset_bottom = 212.0
+offset_bottom = 230.0
 grow_horizontal = 2
-theme_override_constants/outline_size = 4
 theme_override_font_sizes/font_size = 70
-text = "0
-"
+text = "0"
 horizontal_alignment = 1
+
+[node name="LabelX" type="Label" parent="CanvasLayer/LabelScore"]
+visible = false
+layout_mode = 1
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -41.0
+offset_top = -30.0
+offset_bottom = 30.0
+grow_horizontal = 0
+grow_vertical = 2
+rotation = 0.261799
+theme_override_font_sizes/font_size = 55
+text = "x4"
+
+[node name="ScoreSprite" type="TextureRect" parent="CanvasLayer"]
+self_modulate = Color(0.815686, 1, 0, 1)
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -40.0
+offset_bottom = 40.0
+grow_horizontal = 0
+texture = ExtResource("11_fevyy")
 
 [node name="Stick" type="ColorRect" parent="."]
 visible = false
@@ -529,14 +555,9 @@ frame = 17
 frame_progress = 1.0
 speed_scale = 8.0
 
-[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
-stream = ExtResource("16_k12tt")
-volume_db = -15.0
-parameters/looping = true
-
 [node name="AudioStreamPlayerHit" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("18_b3802")
-volume_db = -20.0
+volume_db = -30.0
 
 [node name="XBonusLabel" type="Label" parent="."]
 offset_left = -75.0
@@ -548,7 +569,16 @@ text = "0"
 
 [node name="AudioStreamPlayerSwipe" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("20_hibaj")
+volume_db = -30.0
+
+[node name="AudioStreamPlayerDefeat" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("17_h1bgf")
+volume_db = -20.0
+
+[node name="AudioStreamPlayerScoreX" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("18_fevyy")
 volume_db = -20.0
 
 [connection signal="pressed" from="CanvasLayer/StartGameButton" to="." method="_on_start_game_button_pressed"]
 [connection signal="pressed" from="CanvasLayer/EndGamePanel/MarginContainer/HBoxContainer/ResetGameButton" to="." method="_on_reset_game_button_pressed"]
+[connection signal="pressed" from="CanvasLayer/EndGamePanel/MarginContainer/HBoxContainer/CancelButton" to="." method="_on_cancel_button_pressed"]

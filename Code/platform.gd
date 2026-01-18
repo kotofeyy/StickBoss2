@@ -1,7 +1,6 @@
 class_name Platform extends Control
 
-@onready var center: ColorRect = $Center
-@onready var main: ColorRect = $Main
+@onready var center: TextureRect = $Center
 @onready var base_platfrom: TextureRect = $BasePlatfrom
 
 
@@ -14,13 +13,15 @@ var can_remove: bool = false
 func _ready() -> void:
 	_random_position()
 	_random_size()
+	
 	center.position.x = (base_platfrom.size.x - center.size.x) / 2
 	var tween = get_tree().create_tween()
-	tween.set_trans(Tween.TRANS_ELASTIC)
+	tween.set_trans(Tween.TRANS_QUAD)
 	tween.tween_property(self, "position:y", 640, 0.5)
 	tween.finished.connect(func(): 
 		can_remove = true
 	)
+	start_center_animation()
 
 
 func _random_position() -> void:
@@ -55,5 +56,16 @@ func hit_to_center() -> void:
 
 func defeat() -> void:
 	var tween = get_tree().create_tween()
-	tween.set_trans(Tween.TRANS_ELASTIC)
+	tween.set_trans(Tween.TRANS_QUINT)
 	tween.tween_property(self, "position:y", 900, 0.5)
+	
+
+func start_center_animation() -> void:
+	var tween = get_tree().create_tween()
+	tween.set_loops(true)
+	tween.tween_property(center, "rotation_degrees", 360, 1.5)
+	tween.tween_property(center, "rotation_degrees", 0, 1.5)
+
+
+func random_spawn_center() -> void:
+	pass

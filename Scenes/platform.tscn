@@ -1,7 +1,14 @@
-[gd_scene load_steps=3 format=3 uid="uid://d05llmg1igb4g"]
+[gd_scene load_steps=6 format=3 uid="uid://d05llmg1igb4g"]
 
 [ext_resource type="Script" uid="uid://byjgi54hameu5" path="res://Code/platform.gd" id="1_1rc8e"]
+[ext_resource type="Texture2D" uid="uid://dejhhnvq1vbhn" path="res://Sprites/daimond_16.png" id="2_mrs20"]
 [ext_resource type="Texture2D" uid="uid://clo30vfvutmji" path="res://Sprites/Platforms/basic_platform.png" id="2_n5262"]
+[ext_resource type="Texture2D" uid="uid://da03wb1i0a44n" path="res://Sprites/Platforms/tree_platform.png" id="4_mlqre"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_mlqre"]
+texture = ExtResource("4_mlqre")
+axis_stretch_horizontal = 1
+axis_stretch_vertical = 2
 
 [node name="Platform" type="Control"]
 layout_mode = 3
@@ -11,30 +18,36 @@ offset_right = 90.0
 offset_bottom = 1150.0
 script = ExtResource("1_1rc8e")
 
-[node name="Center" type="ColorRect" parent="."]
+[node name="Center" type="TextureRect" parent="."]
+self_modulate = Color(0.815686, 1, 0, 1)
 layout_mode = 1
 anchors_preset = 5
 anchor_left = 0.5
 anchor_right = 0.5
-offset_left = -11.0
-offset_top = -6.0
-offset_right = 11.0
+offset_left = -16.0
+offset_top = -36.0
+offset_right = 16.0
+offset_bottom = -4.0
 grow_horizontal = 2
-color = Color(0, 0.767782, 0.465989, 1)
+pivot_offset = Vector2(15, 15)
+texture = ExtResource("2_mrs20")
 
 [node name="BasePlatfrom" type="TextureRect" parent="."]
+self_modulate = Color(1, 1, 1, 0)
 layout_mode = 0
 offset_right = 90.0
 offset_bottom = 285.0
 texture = ExtResource("2_n5262")
 expand_mode = 1
 
-[node name="Main" type="ColorRect" parent="."]
-visible = false
-layout_mode = 0
-offset_right = 90.0
-offset_bottom = 285.0
-color = Color(0, 0, 0, 1)
+[node name="Panel" type="Panel" parent="BasePlatfrom"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxTexture_mlqre")
 
 [node name="VisibleOnScreenEnabler2D" type="VisibleOnScreenEnabler2D" parent="."]
 position = Vector2(43.75, 139)
