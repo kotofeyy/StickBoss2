@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dejhhnvq1vbhn"
-path="res://.godot/imported/daimond_16.png-cce44cefaf2eb4c7d48d0e0836d0556d.ctex"
+uid="uid://c3bhfxhq1s1yl"
+path="res://.godot/imported/pumpkin_skin.png-3e23b1b0c509d61dd396696a049d7312.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Sprites/daimond_16.png"
-dest_files=["res://.godot/imported/daimond_16.png-cce44cefaf2eb4c7d48d0e0836d0556d.ctex"]
+source_file="res://Sprites/pumpkin_skin.png"
+dest_files=["res://.godot/imported/pumpkin_skin.png-3e23b1b0c509d61dd396696a049d7312.ctex"]
 
 [params]
 

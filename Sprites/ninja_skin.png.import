@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://b00sq56owvdit"
-path="res://.godot/imported/MagicBarrier_64x64.png-84424ee065514a58e5eef07eaa88377f.ctex"
+uid="uid://2f7hrq1isdph"
+path="res://.godot/imported/ninja_skin.png-257d03d62d84ece77889dab4ab69dd30.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Sprites/MagicBarrier_64x64.png"
-dest_files=["res://.godot/imported/MagicBarrier_64x64.png-84424ee065514a58e5eef07eaa88377f.ctex"]
+source_file="res://Sprites/ninja_skin.png"
+dest_files=["res://.godot/imported/ninja_skin.png-257d03d62d84ece77889dab4ab69dd30.ctex"]
 
 [params]
 

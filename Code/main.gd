@@ -3,24 +3,26 @@ extends Node2D
 
 @onready var player: Control = $Player
 @onready var animated_sprite_2d: AnimatedSprite2D = $Player/AnimatedSprite2D
+@onready var animated_sprite_2d_white_skin: AnimatedSprite2D = $Player/AnimatedSprite2DWhiteSkin
+
 @onready var camera_2d: Camera2D = $Player/Camera2D
 @onready var stick: ColorRect = $Stick
 @onready var animated_sprite_bonus: AnimatedSprite2D = $AnimatedSpriteBonus
+
 @onready var audio_stream_player_hit: AudioStreamPlayer = $AudioStreamPlayerHit
 @onready var audio_stream_player_swipe: AudioStreamPlayer = $AudioStreamPlayerSwipe
 @onready var audio_stream_player_defeat: AudioStreamPlayer = $AudioStreamPlayerDefeat
 @onready var audio_stream_player_score_x: AudioStreamPlayer = $AudioStreamPlayerScoreX
 
-
 @onready var start_game_button: Button = $CanvasLayer/StartGameButton
 @onready var end_game_panel: Panel = $CanvasLayer/EndGamePanel
-
 
 @onready var label_score: Label = $CanvasLayer/LabelScore
 @onready var label_x: Label = $CanvasLayer/LabelScore/LabelX
 @onready var result_score_label: RichTextLabel = $CanvasLayer/EndGamePanel/MarginContainer/VBoxContainer/ResultScoreLabel
 @onready var best_score_label: RichTextLabel = $CanvasLayer/EndGamePanel/MarginContainer/VBoxContainer/BestScoreLabel
 @onready var x_bonus_label: Label = $XBonusLabel
+@onready var label_all_scores: Label = $CanvasLayer/HBoxContainer/LabelAllScores
 
 @onready var parallax_background: ParallaxBackground = $ParallaxBackground
 @onready var parallax_background_2: ParallaxBackground = $ParallaxBackground2
@@ -31,17 +33,15 @@ var platfrom_1: Platform
 var platfrom_2: Platform
 var center_platform_size_y := 6
 var score := 0
-var is_building := false
+var all_scores := 0
 var game_is_starting := false
 var temp_stick_position
 var current_hit: String
-var hit_center_counter := 0
+var hit_center_counter := 1
 var tween_label_score: Tween
 
 
 func _ready() -> void:
-	#JavaScriptBridge.eval("console.log('ЗДАРОВА ПЕДИК')")
-	#start_game()
 	pass
 
 
@@ -49,7 +49,6 @@ func _physics_process(delta: float) -> void:
 	if game_is_starting:
 		if Input.is_action_pressed("ui_up") or Input.is_action_pressed("mouse_action") or Input.emulate_touch_from_mouse:
 			stick.size.y += 3
-			is_building = true
 
 		if Input.is_action_just_released("ui_up") or Input.is_action_just_released("mouse_action"):
 			rotate_stick()
@@ -60,7 +59,7 @@ func start_game() -> void:
 	parallax_background.visible = false
 	parallax_background_2.visible = false
 	score = 0
-	hit_center_counter = 0
+	hit_center_counter = 1
 	label_score.text = str(score)
 	start_game_button.visible = false
 	player.visible = true
@@ -76,6 +75,7 @@ func start_game() -> void:
 	
 	add_child(platfrom_1)
 	platfrom_1.position.x = 0
+	platfrom_1.hide_center()
 	add_child(platfrom_2)
 	
 	player.position.x = (platfrom_1.position.x + platfrom_1.get_size_x()) - 20
@@ -87,14 +87,16 @@ func start_game() -> void:
 func move_player_to_platform() -> void:
 	score += 1
 	label_score.text = str(score)
-	animated_sprite_2d.play("walk")
+	#animated_sprite_2d.play("walk")
+	animated_sprite_2d_white_skin.play("walk")
 	var tween = get_tree().create_tween()
 	tween.tween_property(player, "position:x", platfrom_2.position.x + platfrom_2.get_size_x() - 20, 0.5)
 	tween.finished.connect(spawn_next_platform)
 
 
 func spawn_next_platform() -> void:
-	animated_sprite_2d.pause()
+	#animated_sprite_2d.pause()
+	animated_sprite_2d_white_skin.pause()
 	reset_stick()
 	
 	var min_pos_x = platfrom_2.position.x + 200
@@ -112,10 +114,6 @@ func clear_platforms() -> void:
 			child.queue_free()
 
 
-func set_default_pitch() -> void:
-	audio_stream_player_hit.pitch_scale = 1.0
-
-
 func label_score_shake() -> void:
 	label_score.pivot_offset = Vector2(label_score.size.x / 2, label_score.size.y / 2)
 	var tween = get_tree().create_tween() 
@@ -128,10 +126,9 @@ func label_score_shake() -> void:
 	tween.chain().tween_property(label_score, "rotation_degrees", 0, 0.1)
 
 
-
-func animate_label_x(start_val: int, end_val: int, duration: float = 1.5):
-	label_score.scale = Vector2(1.5, 1.5)
+func animate_label_x(start_val: int, end_val: int, duration: float = 1.0):
 	var tween = get_tree().create_tween()
+	tween.tween_property(label_score, "scale", Vector2(1.5, 1.5), 0.3)
 	tween.tween_method(_set_label_number, start_val, end_val, duration)\
 		.set_trans(Tween.TRANS_QUAD)\
 		.set_ease(Tween.EASE_OUT)
@@ -159,8 +156,8 @@ func rotate_stick() -> void:
 			score *= hit_center_counter
 			audio_stream_player_score_x.play()
 			animate_label_x(start_value, score)
-		hit_center_counter = 0
-		set_default_pitch()
+		hit_center_counter = 1
+
 	elif check_distance() == "hit_center":
 		tween.finished.connect(func(): 
 			
@@ -173,6 +170,8 @@ func rotate_stick() -> void:
 
 
 func hit_to_center() -> void:
+	all_scores += 1
+	label_all_scores.text = str(all_scores)
 	camera_2d.applay_shake()
 	label_score_shake()
 	x_bonus_label.position.y = platfrom_2.position.y
