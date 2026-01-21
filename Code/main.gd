@@ -3,7 +3,6 @@ extends Node2D
 
 @onready var player: Control = $Player
 @onready var animated_sprite_2d: AnimatedSprite2D = $Player/AnimatedSprite2D
-@onready var animated_sprite_2d_white_skin: AnimatedSprite2D = $Player/AnimatedSprite2DWhiteSkin
 
 @onready var camera_2d: Camera2D = $Player/Camera2D
 @onready var stick: ColorRect = $Stick
@@ -27,8 +26,14 @@ extends Node2D
 @onready var parallax_background: ParallaxBackground = $ParallaxBackground
 @onready var parallax_background_2: ParallaxBackground = $ParallaxBackground2
 
+@onready var v_box_container: VBoxContainer = $CanvasLayer/ShopPanel/MarginContainer/VScrollBar/VBoxContainer
+@onready var shop_panel: Panel = $CanvasLayer/ShopPanel
+@onready var shop_button_panel: Panel = $CanvasLayer/Panel
 
-var platform_preload: PackedScene = preload("res://Scenes/platform.tscn")
+
+
+@onready var slot_preload: PackedScene = preload("res://Scenes/slot.tscn")
+@onready var platform_preload: PackedScene = preload("res://Scenes/platform.tscn")
 var platfrom_1: Platform
 var platfrom_2: Platform
 var center_platform_size_y := 6
@@ -39,10 +44,23 @@ var temp_stick_position
 var current_hit: String
 var hit_center_counter := 1
 var tween_label_score: Tween
+var current_skin = Skins.Type.DEFAULT
 
 
 func _ready() -> void:
-	pass
+	for s in Skins.List:
+		var slot: Slot = slot_preload.instantiate()
+		slot.description = Skins.List[s]
+		slot.skin = s
+		slot.on_click.connect(func(s): 
+			slot.select(s)
+			shop_panel.visible = false
+			current_skin = s
+			animated_sprite_2d.animation = str(s)
+			)
+		v_box_container.add_child(slot)
+		slot.select(current_skin)
+	animated_sprite_2d.animation = str(current_skin)
 
 
 func _physics_process(delta: float) -> void:
@@ -65,6 +83,7 @@ func start_game() -> void:
 	player.visible = true
 	stick.visible = true
 	label_x.visible = false
+	shop_button_panel.visible = false
 	
 	match (randi_range(1,2)):
 		1: parallax_background.visible = true
@@ -87,16 +106,14 @@ func start_game() -> void:
 func move_player_to_platform() -> void:
 	score += 1
 	label_score.text = str(score)
-	#animated_sprite_2d.play("walk")
-	animated_sprite_2d_white_skin.play("walk")
+	animated_sprite_2d.play(str(current_skin))
 	var tween = get_tree().create_tween()
 	tween.tween_property(player, "position:x", platfrom_2.position.x + platfrom_2.get_size_x() - 20, 0.5)
 	tween.finished.connect(spawn_next_platform)
 
 
 func spawn_next_platform() -> void:
-	#animated_sprite_2d.pause()
-	animated_sprite_2d_white_skin.pause()
+	animated_sprite_2d.pause()
 	reset_stick()
 	
 	var min_pos_x = platfrom_2.position.x + 200
@@ -267,6 +284,16 @@ func _on_cancel_button_pressed() -> void:
 	end_game_panel.visible = false
 	await get_tree().create_timer(0.5).timeout
 	start_game_button.visible = true
+	shop_button_panel.visible = true
 	
+
+func _on_shop_button_pressed() -> void:
+	shop_panel.visible = true
+	set_current_selected()
+
+
+func set_current_selected() -> void:
+	var childs = v_box_container.get_children()
 	
-	
+	for child: Slot in childs:
+		child.select(current_skin)
