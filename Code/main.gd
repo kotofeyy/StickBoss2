@@ -29,6 +29,9 @@ extends Node2D
 @onready var v_box_container: VBoxContainer = $CanvasLayer/ShopPanel/MarginContainer/VScrollBar/VBoxContainer
 @onready var shop_panel: Panel = $CanvasLayer/ShopPanel
 @onready var shop_button_panel: Panel = $CanvasLayer/Panel
+@onready var icon: AnimatedSprite2D = $CanvasLayer/Panel/ShopButton/Control/Icon
+
+
 
 
 
@@ -44,32 +47,47 @@ var temp_stick_position
 var current_hit: String
 var hit_center_counter := 1
 var tween_label_score: Tween
-var current_skin = Skins.Type.DEFAULT
+var current_skin = Skins.Type.NINJA
+var current_dashed_line_length = 0
 
 
 func _ready() -> void:
 	for s in Skins.List:
 		var slot: Slot = slot_preload.instantiate()
-		slot.description = Skins.List[s]
+		slot.description = Skins.List[s]["description"]
 		slot.skin = s
-		slot.on_click.connect(func(s): 
-			slot.select(s)
+		slot.cost = Skins.List[s]["cost"]
+		slot.type_cost = Skins.List[s]["type_cost"]
+		slot.player_score = all_scores
+		slot.on_click.connect(func(skin): 
+			slot.select(skin)
 			shop_panel.visible = false
-			current_skin = s
-			animated_sprite_2d.animation = str(s)
+			current_skin = skin
+			animated_sprite_2d.animation = str(skin)
+			icon.animation = str(skin)
 			)
 		v_box_container.add_child(slot)
 		slot.select(current_skin)
 	animated_sprite_2d.animation = str(current_skin)
+	icon.animation = str(current_skin)
+	
 
 
-func _physics_process(delta: float) -> void:
+func _physics_process(_delta: float) -> void:
 	if game_is_starting:
 		if Input.is_action_pressed("ui_up") or Input.is_action_pressed("mouse_action") or Input.emulate_touch_from_mouse:
 			stick.size.y += 3
+			queue_redraw()
 
 		if Input.is_action_just_released("ui_up") or Input.is_action_just_released("mouse_action"):
 			rotate_stick()
+
+
+func _draw() -> void:
+	if stick.size.y > 20:
+		var start_point = Vector2(stick.position.x, stick.position.y)
+		var end_point = start_point + Vector2.RIGHT * Vector2(stick.size.y, platfrom_2.position.y)
+		draw_dashed_line(start_point, end_point , Color.BLUE, 10, 10)
 
 
 func start_game() -> void:
@@ -115,7 +133,6 @@ func move_player_to_platform() -> void:
 func spawn_next_platform() -> void:
 	animated_sprite_2d.pause()
 	reset_stick()
-	
 	var min_pos_x = platfrom_2.position.x + 200
 	var max_pos_x = platfrom_2.position.x + 420
 	platfrom_2 = platform_preload.instantiate()
@@ -162,7 +179,6 @@ func rotate_stick() -> void:
 	var tween = get_tree().create_tween()
 	tween.set_trans(Tween.TRANS_QUART)
 	tween.tween_property(stick, "rotation_degrees", 180 + 90, 0.3)
-	
 	if check_distance() == "hit":
 		tween.finished.connect(move_player_to_platform)
 		current_hit = "hit"
@@ -177,7 +193,6 @@ func rotate_stick() -> void:
 
 	elif check_distance() == "hit_center":
 		tween.finished.connect(func(): 
-			
 			move_player_to_platform()
 			hit_to_center()
 			)
@@ -192,7 +207,7 @@ func hit_to_center() -> void:
 	camera_2d.applay_shake()
 	label_score_shake()
 	x_bonus_label.position.y = platfrom_2.position.y
-	x_bonus_label.position.x = platfrom_2.position.x + randi_range(10,50)
+	x_bonus_label.position.x = platfrom_2.position.x + randi_range(10, 50)
 	x_bonus_label.modulate.a = 1.0
 	x_bonus_label.text = ["ВАУ!", "Круто!", "Класс!", "Великолепно!", "Превосходно!"].pick_random()
 		
@@ -205,8 +220,6 @@ func hit_to_center() -> void:
 		hit_center_counter += 1
 		label_x.visible = true
 		label_x.text = "x" + str(hit_center_counter)
-		
-	#if hit_center_counter > 1:
 
 	platfrom_2.hit_to_center()
 	spawn_bonus_effect()
@@ -237,6 +250,7 @@ func reset_stick() -> void:
 	stick.position.y = temp_stick_position
 	
 	stick.rotation_degrees = 180
+	queue_redraw()
 
 
 func check_distance() -> String:

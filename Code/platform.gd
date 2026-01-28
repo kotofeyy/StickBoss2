@@ -32,15 +32,15 @@ func _random_size() -> void:
 		base_platfrom.size.x = randi_range(40, 90)
 
 
-func get_size_x() -> int:
+func get_size_x() -> float:
 	return base_platfrom.size.x
 
 
-func get_size_y() -> int:
+func get_size_y() -> float:
 	return base_platfrom.size.y
 
 
-func get_size_x_center() -> int:
+func get_size_x_center() -> float:
 	return control_center.size.x
 
 

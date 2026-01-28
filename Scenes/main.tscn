@@ -1,7 +1,7 @@
-[gd_scene load_steps=75 format=3 uid="uid://b4iychpqi6vow"]
+[gd_scene load_steps=70 format=3 uid="uid://b4iychpqi6vow"]
 
 [ext_resource type="Script" uid="uid://c42qrci2bvi5k" path="res://Code/main.gd" id="1_bo1nx"]
-[ext_resource type="Texture2D" uid="uid://b0jpo2epsdxav" path="res://Sprites/Basic Charakter Spritesheet.png" id="2_bo1nx"]
+[ext_resource type="Texture2D" uid="uid://dk8ramswq6vxl" path="res://Sprites/default_skin.png" id="2_pdsj5"]
 [ext_resource type="Texture2D" uid="uid://bpiain87r47g5" path="res://Sprites/Backgrounds/Background_1/1.png" id="3_8gbba"]
 [ext_resource type="Script" uid="uid://cnq628e5ltt70" path="res://Code/camera_2d.gd" id="3_b3802"]
 [ext_resource type="Texture2D" uid="uid://codvwl28bvygq" path="res://Sprites/white_skin.png" id="4_fevyy"]
@@ -22,21 +22,21 @@
 [ext_resource type="AudioStream" uid="uid://ditnhd8xfre28" path="res://Sounds/score_x_up.wav" id="18_fevyy"]
 [ext_resource type="AudioStream" uid="uid://cey4r3r214cqx" path="res://Sounds/SwipeStick.mp3" id="20_hibaj"]
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_jjvhh"]
-atlas = ExtResource("2_bo1nx")
-region = Rect2(0, 144, 48, 48)
+[sub_resource type="AtlasTexture" id="AtlasTexture_6vcvc"]
+atlas = ExtResource("2_pdsj5")
+region = Rect2(0, 0, 16, 16)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_kry3j"]
-atlas = ExtResource("2_bo1nx")
-region = Rect2(48, 144, 48, 48)
+[sub_resource type="AtlasTexture" id="AtlasTexture_7k868"]
+atlas = ExtResource("2_pdsj5")
+region = Rect2(16, 0, 16, 16)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_21xkr"]
-atlas = ExtResource("2_bo1nx")
-region = Rect2(96, 144, 48, 48)
+[sub_resource type="AtlasTexture" id="AtlasTexture_hpc6h"]
+atlas = ExtResource("2_pdsj5")
+region = Rect2(32, 0, 16, 16)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_6bp64"]
-atlas = ExtResource("2_bo1nx")
-region = Rect2(144, 144, 48, 48)
+[sub_resource type="AtlasTexture" id="AtlasTexture_kltya"]
+atlas = ExtResource("2_pdsj5")
+region = Rect2(48, 0, 16, 16)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_u50mg"]
 atlas = ExtResource("13_hibaj")
@@ -90,16 +90,16 @@ region = Rect2(48, 0, 16, 16)
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_jjvhh")
+"texture": SubResource("AtlasTexture_6vcvc")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_kry3j")
+"texture": SubResource("AtlasTexture_7k868")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_21xkr")
+"texture": SubResource("AtlasTexture_hpc6h")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_6bp64")
+"texture": SubResource("AtlasTexture_kltya")
 }],
 "loop": true,
 "name": &"0",
@@ -269,57 +269,6 @@ corner_radius_top_right = 8
 corner_radius_bottom_right = 8
 corner_radius_bottom_left = 8
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_7k868"]
-atlas = ExtResource("2_bo1nx")
-region = Rect2(112, 160, 16, 16)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_hpc6h"]
-atlas = ExtResource("13_hibaj")
-region = Rect2(16, 0, 16, 16)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_kltya"]
-atlas = ExtResource("14_pdsj5")
-region = Rect2(16, 0, 16, 16)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_6vcvc"]
-atlas = ExtResource("4_fevyy")
-region = Rect2(32, 0, 16, 16)
-
-[sub_resource type="SpriteFrames" id="SpriteFrames_7k868"]
-animations = [{
-"frames": [{
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_7k868")
-}],
-"loop": false,
-"name": &"default",
-"speed": 5.0
-}, {
-"frames": [{
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_hpc6h")
-}],
-"loop": true,
-"name": &"ninja",
-"speed": 5.0
-}, {
-"frames": [{
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_kltya")
-}],
-"loop": true,
-"name": &"pumpkin",
-"speed": 5.0
-}, {
-"frames": [{
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_6vcvc")
-}],
-"loop": false,
-"name": &"white",
-"speed": 5.0
-}]
-
 [sub_resource type="AtlasTexture" id="AtlasTexture_b3802"]
 atlas = ExtResource("14_jkdf5")
 region = Rect2(1728, 0, 96, 96)
@@ -470,7 +419,7 @@ pivot_offset = Vector2(20, 40)
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Player"]
 scale = Vector2(4, 4)
 sprite_frames = SubResource("SpriteFrames_6bp64")
-animation = &"3"
+animation = &"0"
 speed_scale = 2.0
 
 [node name="Camera2D" type="Camera2D" parent="Player"]
@@ -788,10 +737,11 @@ layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
 
-[node name="Ninja" type="AnimatedSprite2D" parent="CanvasLayer/Panel/ShopButton/Control"]
+[node name="Icon" type="AnimatedSprite2D" parent="CanvasLayer/Panel/ShopButton/Control"]
 scale = Vector2(4, 4)
-sprite_frames = SubResource("SpriteFrames_7k868")
-animation = &"ninja"
+sprite_frames = SubResource("SpriteFrames_6bp64")
+animation = &"0"
+speed_scale = 2.0
 centered = false
 
 [node name="ShopButton" type="Button" parent="CanvasLayer/Panel/ShopButton"]
