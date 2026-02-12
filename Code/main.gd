@@ -21,7 +21,7 @@ extends Node2D
 @onready var result_score_label: RichTextLabel = $CanvasLayer/EndGamePanel/MarginContainer/VBoxContainer/ResultScoreLabel
 @onready var best_score_label: RichTextLabel = $CanvasLayer/EndGamePanel/MarginContainer/VBoxContainer/BestScoreLabel
 @onready var x_bonus_label: Label = $XBonusLabel
-@onready var label_all_scores: Label = $CanvasLayer/HBoxContainer/LabelAllScores
+@onready var label_coins: Label = $CanvasLayer/HBoxContainer/LabelAllCoins
 
 @onready var parallax_background: ParallaxBackground = $ParallaxBackground
 @onready var parallax_background_2: ParallaxBackground = $ParallaxBackground2
@@ -31,6 +31,7 @@ extends Node2D
 @onready var shop_button_panel: Panel = $CanvasLayer/Panel
 @onready var icon: AnimatedSprite2D = $CanvasLayer/Panel/ShopButton/Control/Icon
 
+@onready var ability_button: Button = $CanvasLayer/AbilityButton
 
 
 
@@ -41,7 +42,7 @@ var platfrom_1: Platform
 var platfrom_2: Platform
 var center_platform_size_y := 6
 var score := 0
-var all_scores := 0
+var coins := 0
 var game_is_starting := false
 var temp_stick_position
 var current_hit: String
@@ -49,7 +50,7 @@ var hit_center_counter := 1
 var tween_label_score: Tween
 var current_skin = Skins.Type.NINJA
 var current_dashed_line_length = 0
-
+var can_ability = false
 
 func _ready() -> void:
 	for s in Skins.List:
@@ -58,7 +59,7 @@ func _ready() -> void:
 		slot.skin = s
 		slot.cost = Skins.List[s]["cost"]
 		slot.type_cost = Skins.List[s]["type_cost"]
-		slot.player_score = all_scores
+		slot.player_score = coins
 		slot.on_click.connect(func(skin): 
 			slot.select(skin)
 			shop_panel.visible = false
@@ -70,12 +71,14 @@ func _ready() -> void:
 		slot.select(current_skin)
 	animated_sprite_2d.animation = str(current_skin)
 	icon.animation = str(current_skin)
-	
 
 
 func _physics_process(_delta: float) -> void:
+	#pass
 	if game_is_starting:
 		if Input.is_action_pressed("ui_up") or Input.is_action_pressed("mouse_action") or Input.emulate_touch_from_mouse:
+			#if get_viewport().gui_get_focus_owner() != null or get_viewport().gui_is_dragging():
+				#return
 			stick.size.y += 3
 			queue_redraw()
 
@@ -83,8 +86,19 @@ func _physics_process(_delta: float) -> void:
 			rotate_stick()
 
 
+func _unhandled_input(_event: InputEvent) -> void:
+	pass
+	#if game_is_starting:
+		#if Input.is_action_pressed("ui_up") or Input.is_action_pressed("mouse_action") or Input.emulate_touch_from_mouse:
+			#stick.size.y += 6
+			#queue_redraw()
+#
+		#if Input.is_action_just_released("ui_up") or Input.is_action_just_released("mouse_action"):
+			#rotate_stick()
+
+
 func _draw() -> void:
-	if stick.size.y > 20:
+	if stick.size.y > 20 and can_ability:
 		var start_point = Vector2(stick.position.x, stick.position.y)
 		var end_point = start_point + Vector2.RIGHT * Vector2(stick.size.y, platfrom_2.position.y)
 		draw_dashed_line(start_point, end_point , Color.BLUE, 10, 10)
@@ -202,8 +216,8 @@ func rotate_stick() -> void:
 
 
 func hit_to_center() -> void:
-	all_scores += 1
-	label_all_scores.text = str(all_scores)
+	coins += 1
+	label_coins.text = str(coins)
 	camera_2d.applay_shake()
 	label_score_shake()
 	x_bonus_label.position.y = platfrom_2.position.y
@@ -311,3 +325,8 @@ func set_current_selected() -> void:
 	
 	for child: Slot in childs:
 		child.select(current_skin)
+
+
+func _on_ability_button_toggled(toggled_on: bool) -> void:
+	pass
+	#can_ability = toggled_on

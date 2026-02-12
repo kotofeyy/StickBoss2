@@ -1,4 +1,4 @@
-[gd_scene load_steps=70 format=3 uid="uid://b4iychpqi6vow"]
+[gd_scene format=3 uid="uid://b4iychpqi6vow"]
 
 [ext_resource type="Script" uid="uid://c42qrci2bvi5k" path="res://Code/main.gd" id="1_bo1nx"]
 [ext_resource type="Texture2D" uid="uid://dk8ramswq6vxl" path="res://Sprites/default_skin.png" id="2_pdsj5"]
@@ -17,6 +17,7 @@
 [ext_resource type="Texture2D" uid="uid://d3053pmsoadc7" path="res://Sprites/Backgrounds/Background_2/5.png" id="13_jkdf5"]
 [ext_resource type="Texture2D" uid="uid://db0gc1656c6ac" path="res://Sprites/PoisonCast_96x96.png" id="14_jkdf5"]
 [ext_resource type="Texture2D" uid="uid://c3bhfxhq1s1yl" path="res://Sprites/pumpkin_skin.png" id="14_pdsj5"]
+[ext_resource type="Texture2D" uid="uid://fe4mwjugxwhy" path="res://Sprites/metr.png" id="15_ee4r6"]
 [ext_resource type="AudioStream" uid="uid://bagq4ajruxin8" path="res://Sounds/defeat.wav" id="17_h1bgf"]
 [ext_resource type="AudioStream" uid="uid://ben86vgtbfkcj" path="res://Sounds/hit_to_center_2.wav" id="18_b3802"]
 [ext_resource type="AudioStream" uid="uid://ditnhd8xfre28" path="res://Sounds/score_x_up.wav" id="18_fevyy"]
@@ -157,12 +158,12 @@ animations = [{
 "speed": 5.0
 }]
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_u50mg"]
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_3pmx8"]
 content_margin_left = 10.0
 content_margin_right = 10.0
-bg_color = Color(0.100459, 0.528727, 0.644708, 1)
+bg_color = Color(0.149454, 0.661719, 0.804461, 1)
 border_width_bottom = 8
-border_color = Color(0.168999, 0.69398, 0.840494, 1)
+border_color = Color(0.503164, 0.863554, 0.984587, 1)
 corner_radius_top_left = 8
 corner_radius_top_right = 8
 corner_radius_bottom_right = 8
@@ -177,12 +178,12 @@ corner_radius_top_right = 8
 corner_radius_bottom_right = 8
 corner_radius_bottom_left = 8
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_3pmx8"]
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_u50mg"]
 content_margin_left = 10.0
 content_margin_right = 10.0
-bg_color = Color(0.149454, 0.661719, 0.804461, 1)
+bg_color = Color(0.100459, 0.528727, 0.644708, 1)
 border_width_bottom = 8
-border_color = Color(0.503164, 0.863554, 0.984587, 1)
+border_color = Color(0.168999, 0.69398, 0.840494, 1)
 corner_radius_top_left = 8
 corner_radius_top_right = 8
 corner_radius_bottom_right = 8
@@ -197,10 +198,10 @@ corner_radius_top_right = 8
 corner_radius_bottom_right = 8
 corner_radius_bottom_left = 8
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_1w6v2"]
-bg_color = Color(1.20327e-06, 0.566945, 0.436029, 1)
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_hibaj"]
+bg_color = Color(0, 0.617271, 0.474242, 1)
 border_width_bottom = 8
-border_color = Color(1.54018e-06, 0.743204, 0.573235, 1)
+border_color = Color(4.81308e-06, 0.790592, 0.612598, 1)
 corner_radius_top_left = 8
 corner_radius_top_right = 8
 corner_radius_bottom_right = 8
@@ -213,19 +214,19 @@ corner_radius_top_right = 8
 corner_radius_bottom_right = 8
 corner_radius_bottom_left = 8
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_hibaj"]
-bg_color = Color(0, 0.617271, 0.474242, 1)
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_1w6v2"]
+bg_color = Color(1.20327e-06, 0.566945, 0.436029, 1)
 border_width_bottom = 8
-border_color = Color(4.81308e-06, 0.790592, 0.612598, 1)
+border_color = Color(1.54018e-06, 0.743204, 0.573235, 1)
 corner_radius_top_left = 8
 corner_radius_top_right = 8
 corner_radius_bottom_right = 8
 corner_radius_bottom_left = 8
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ee4r6"]
-bg_color = Color(0.516595, 0.289713, 0.44066, 1)
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_fevyy"]
+bg_color = Color(0.614365, 0.3613, 0.52836, 1)
 border_width_bottom = 8
-border_color = Color(0.708018, 0.440069, 0.614758, 1)
+border_color = Color(0.784342, 0.534674, 0.695338, 1)
 corner_radius_top_left = 8
 corner_radius_top_right = 8
 corner_radius_bottom_right = 8
@@ -239,10 +240,10 @@ corner_radius_top_right = 8
 corner_radius_bottom_right = 8
 corner_radius_bottom_left = 8
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_fevyy"]
-bg_color = Color(0.614365, 0.3613, 0.52836, 1)
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ee4r6"]
+bg_color = Color(0.516595, 0.289713, 0.44066, 1)
 border_width_bottom = 8
-border_color = Color(0.784342, 0.534674, 0.695338, 1)
+border_color = Color(0.708018, 0.440069, 0.614758, 1)
 corner_radius_top_left = 8
 corner_radius_top_right = 8
 corner_radius_bottom_right = 8
@@ -268,6 +269,29 @@ corner_radius_top_left = 8
 corner_radius_top_right = 8
 corner_radius_bottom_right = 8
 corner_radius_bottom_left = 8
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_6vcvc"]
+bg_color = Color(0.60038817, 0.60038817, 0.60038817, 0)
+border_width_left = 4
+border_width_top = 4
+border_width_right = 4
+border_width_bottom = 4
+border_color = Color(0, 0, 0, 1)
+corner_radius_top_left = 50
+corner_radius_top_right = 50
+corner_radius_bottom_right = 50
+corner_radius_bottom_left = 50
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_hpc6h"]
+border_width_left = 5
+border_width_top = 5
+border_width_right = 5
+border_width_bottom = 5
+border_color = Color(1, 1, 0, 1)
+corner_radius_top_left = 50
+corner_radius_top_right = 50
+corner_radius_bottom_right = 50
+corner_radius_bottom_left = 50
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_b3802"]
 atlas = ExtResource("14_jkdf5")
@@ -403,10 +427,10 @@ animations = [{
 "speed": 5.0
 }]
 
-[node name="Main" type="Node2D"]
+[node name="Main" type="Node2D" unique_id=698023136]
 script = ExtResource("1_bo1nx")
 
-[node name="Player" type="Control" parent="."]
+[node name="Player" type="Control" parent="." unique_id=651379926]
 visible = false
 layout_mode = 3
 anchors_preset = 0
@@ -416,76 +440,76 @@ offset_right = 221.0
 offset_bottom = 647.0
 pivot_offset = Vector2(20, 40)
 
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Player"]
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Player" unique_id=983460797]
 scale = Vector2(4, 4)
 sprite_frames = SubResource("SpriteFrames_6bp64")
 animation = &"0"
 speed_scale = 2.0
 
-[node name="Camera2D" type="Camera2D" parent="Player"]
+[node name="Camera2D" type="Camera2D" parent="Player" unique_id=1775696703]
 position = Vector2(190, -163)
 ignore_rotation = false
 script = ExtResource("3_b3802")
 
-[node name="ParallaxBackground" type="ParallaxBackground" parent="."]
+[node name="ParallaxBackground" type="ParallaxBackground" parent="." unique_id=167887604]
 scroll_base_scale = Vector2(0.175, 0.175)
 
-[node name="ParallaxLayer" type="ParallaxLayer" parent="ParallaxBackground"]
+[node name="ParallaxLayer" type="ParallaxLayer" parent="ParallaxBackground" unique_id=479371508]
 motion_mirroring = Vector2(500, 0)
 
-[node name="1" type="Sprite2D" parent="ParallaxBackground/ParallaxLayer"]
+[node name="1" type="Sprite2D" parent="ParallaxBackground/ParallaxLayer" unique_id=932977760]
 position = Vector2(315, 438)
 scale = Vector2(1.09375, 2.88272)
 texture = ExtResource("3_8gbba")
 
-[node name="ParallaxLayer7" type="ParallaxLayer" parent="ParallaxBackground"]
+[node name="ParallaxLayer7" type="ParallaxLayer" parent="ParallaxBackground" unique_id=1372648414]
 motion_mirroring = Vector2(1500, 0)
 
-[node name="4" type="Sprite2D" parent="ParallaxBackground/ParallaxLayer7"]
+[node name="4" type="Sprite2D" parent="ParallaxBackground/ParallaxLayer7" unique_id=169015905]
 position = Vector2(671, 606)
 texture = ExtResource("9_hptm8")
 
-[node name="ParallaxLayer4" type="ParallaxLayer" parent="ParallaxBackground"]
+[node name="ParallaxLayer4" type="ParallaxLayer" parent="ParallaxBackground" unique_id=1198007517]
 motion_mirroring = Vector2(500, 0)
 
-[node name="4" type="Sprite2D" parent="ParallaxBackground/ParallaxLayer4"]
+[node name="4" type="Sprite2D" parent="ParallaxBackground/ParallaxLayer4" unique_id=853624604]
 position = Vector2(236.569, 631.195)
 scale = Vector2(0.873023, 0.873023)
 texture = ExtResource("6_21xkr")
 
-[node name="ParallaxLayer2" type="ParallaxLayer" parent="ParallaxBackground"]
+[node name="ParallaxLayer2" type="ParallaxLayer" parent="ParallaxBackground" unique_id=720798395]
 motion_mirroring = Vector2(500, 12.63)
 
-[node name="3" type="Sprite2D" parent="ParallaxBackground/ParallaxLayer2"]
+[node name="3" type="Sprite2D" parent="ParallaxBackground/ParallaxLayer2" unique_id=1509385391]
 position = Vector2(246, 763)
 scale = Vector2(0.874204, 0.951267)
 texture = ExtResource("4_jjvhh")
 
-[node name="ParallaxLayer3" type="ParallaxLayer" parent="ParallaxBackground"]
+[node name="ParallaxLayer3" type="ParallaxLayer" parent="ParallaxBackground" unique_id=1206442363]
 motion_mirroring = Vector2(1000, 0)
 
-[node name="5" type="Sprite2D" parent="ParallaxBackground/ParallaxLayer3"]
+[node name="5" type="Sprite2D" parent="ParallaxBackground/ParallaxLayer3" unique_id=1363226080]
 position = Vector2(265, 853)
 scale = Vector2(0.868056, 0.868056)
 texture = ExtResource("5_kry3j")
 
-[node name="ParallaxLayer5" type="ParallaxLayer" parent="ParallaxBackground"]
+[node name="ParallaxLayer5" type="ParallaxLayer" parent="ParallaxBackground" unique_id=1759756959]
 motion_mirroring = Vector2(1500, 0)
 
-[node name="2" type="Sprite2D" parent="ParallaxBackground/ParallaxLayer5"]
+[node name="2" type="Sprite2D" parent="ParallaxBackground/ParallaxLayer5" unique_id=1433562990]
 position = Vector2(110, 350)
 texture = ExtResource("7_6bp64")
 
-[node name="ParallaxLayer6" type="ParallaxLayer" parent="ParallaxBackground"]
+[node name="ParallaxLayer6" type="ParallaxLayer" parent="ParallaxBackground" unique_id=377086783]
 motion_mirroring = Vector2(700, 0)
 
-[node name="3" type="Sprite2D" parent="ParallaxBackground/ParallaxLayer6"]
+[node name="3" type="Sprite2D" parent="ParallaxBackground/ParallaxLayer6" unique_id=338958719]
 position = Vector2(427, 24)
 texture = ExtResource("8_ynf5e")
 
-[node name="CanvasLayer" type="CanvasLayer" parent="."]
+[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=1710139789]
 
-[node name="StartGameButton" type="Button" parent="CanvasLayer"]
+[node name="StartGameButton" type="Button" parent="CanvasLayer" unique_id=1607331556]
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
@@ -501,12 +525,12 @@ focus_mode = 0
 mouse_default_cursor_shape = 2
 theme_override_colors/font_color = Color(1, 1, 1, 1)
 theme_override_font_sizes/font_size = 55
-theme_override_styles/hover = SubResource("StyleBoxFlat_u50mg")
-theme_override_styles/pressed = SubResource("StyleBoxFlat_cbgmd")
 theme_override_styles/normal = SubResource("StyleBoxFlat_3pmx8")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_cbgmd")
+theme_override_styles/hover = SubResource("StyleBoxFlat_u50mg")
 text = "Нажмите, чтобы начать"
 
-[node name="EndGamePanel" type="Panel" parent="CanvasLayer"]
+[node name="EndGamePanel" type="Panel" parent="CanvasLayer" unique_id=1897201817]
 visible = false
 custom_minimum_size = Vector2(300, 320)
 anchors_preset = 8
@@ -522,7 +546,7 @@ grow_horizontal = 2
 grow_vertical = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_b3802")
 
-[node name="MarginContainer" type="MarginContainer" parent="CanvasLayer/EndGamePanel"]
+[node name="MarginContainer" type="MarginContainer" parent="CanvasLayer/EndGamePanel" unique_id=1933669963]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -534,12 +558,12 @@ theme_override_constants/margin_top = 10
 theme_override_constants/margin_right = 10
 theme_override_constants/margin_bottom = 20
 
-[node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer/EndGamePanel/MarginContainer"]
+[node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer/EndGamePanel/MarginContainer" unique_id=348896609]
 layout_mode = 2
 size_flags_vertical = 8
 alignment = 1
 
-[node name="ResetGameButton" type="Button" parent="CanvasLayer/EndGamePanel/MarginContainer/HBoxContainer"]
+[node name="ResetGameButton" type="Button" parent="CanvasLayer/EndGamePanel/MarginContainer/HBoxContainer" unique_id=527220042]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 8
@@ -547,28 +571,28 @@ focus_mode = 0
 mouse_default_cursor_shape = 2
 theme_override_colors/font_color = Color(1, 1, 1, 1)
 theme_override_font_sizes/font_size = 55
-theme_override_styles/hover = SubResource("StyleBoxFlat_1w6v2")
-theme_override_styles/pressed = SubResource("StyleBoxFlat_pdsj5")
 theme_override_styles/normal = SubResource("StyleBoxFlat_hibaj")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_pdsj5")
+theme_override_styles/hover = SubResource("StyleBoxFlat_1w6v2")
 text = "Да"
 
-[node name="CancelButton" type="Button" parent="CanvasLayer/EndGamePanel/MarginContainer/HBoxContainer"]
+[node name="CancelButton" type="Button" parent="CanvasLayer/EndGamePanel/MarginContainer/HBoxContainer" unique_id=182032001]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 8
 mouse_default_cursor_shape = 2
 theme_override_colors/font_color = Color(1, 1, 1, 1)
 theme_override_font_sizes/font_size = 55
-theme_override_styles/hover = SubResource("StyleBoxFlat_ee4r6")
-theme_override_styles/pressed = SubResource("StyleBoxFlat_gt3je")
 theme_override_styles/normal = SubResource("StyleBoxFlat_fevyy")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_gt3je")
+theme_override_styles/hover = SubResource("StyleBoxFlat_ee4r6")
 text = "Нет"
 
-[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/EndGamePanel/MarginContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/EndGamePanel/MarginContainer" unique_id=895344002]
 layout_mode = 2
 size_flags_vertical = 0
 
-[node name="ResultScoreLabel" type="RichTextLabel" parent="CanvasLayer/EndGamePanel/MarginContainer/VBoxContainer"]
+[node name="ResultScoreLabel" type="RichTextLabel" parent="CanvasLayer/EndGamePanel/MarginContainer/VBoxContainer" unique_id=804652235]
 custom_minimum_size = Vector2(0, 50)
 layout_mode = 2
 size_flags_vertical = 4
@@ -576,7 +600,7 @@ theme_override_colors/default_color = Color(0, 0, 0, 1)
 theme_override_font_sizes/normal_font_size = 40
 text = "Очки: 50"
 
-[node name="BestScoreLabel" type="RichTextLabel" parent="CanvasLayer/EndGamePanel/MarginContainer/VBoxContainer"]
+[node name="BestScoreLabel" type="RichTextLabel" parent="CanvasLayer/EndGamePanel/MarginContainer/VBoxContainer" unique_id=386067897]
 custom_minimum_size = Vector2(0, 50)
 layout_mode = 2
 size_flags_vertical = 4
@@ -584,12 +608,12 @@ theme_override_colors/default_color = Color(0, 0, 0, 1)
 theme_override_font_sizes/normal_font_size = 40
 text = "Рекорд: 300"
 
-[node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer/EndGamePanel/MarginContainer/VBoxContainer"]
+[node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer/EndGamePanel/MarginContainer/VBoxContainer" unique_id=905733199]
 layout_mode = 2
 size_flags_horizontal = 0
 size_flags_vertical = 4
 
-[node name="RichTextLabel" type="RichTextLabel" parent="CanvasLayer/EndGamePanel/MarginContainer/VBoxContainer/HBoxContainer"]
+[node name="RichTextLabel" type="RichTextLabel" parent="CanvasLayer/EndGamePanel/MarginContainer/VBoxContainer/HBoxContainer" unique_id=1632200361]
 custom_minimum_size = Vector2(50, 50)
 layout_mode = 2
 size_flags_vertical = 4
@@ -597,7 +621,7 @@ theme_override_colors/default_color = Color(0, 0, 0, 1)
 theme_override_font_sizes/normal_font_size = 40
 text = "+ 13"
 
-[node name="HeaderLabel" type="RichTextLabel" parent="CanvasLayer/EndGamePanel/MarginContainer/VBoxContainer"]
+[node name="HeaderLabel" type="RichTextLabel" parent="CanvasLayer/EndGamePanel/MarginContainer/VBoxContainer" unique_id=1441134630]
 custom_minimum_size = Vector2(0, 60)
 layout_mode = 2
 theme_override_colors/default_color = Color(0, 0, 0, 1)
@@ -605,7 +629,7 @@ theme_override_font_sizes/normal_font_size = 55
 text = "Заново?"
 horizontal_alignment = 1
 
-[node name="LabelScore" type="Label" parent="CanvasLayer"]
+[node name="LabelScore" type="Label" parent="CanvasLayer" unique_id=286568901]
 custom_minimum_size = Vector2(150, 150)
 anchors_preset = 5
 anchor_left = 0.5
@@ -619,7 +643,7 @@ theme_override_font_sizes/font_size = 70
 text = "0"
 horizontal_alignment = 1
 
-[node name="LabelX" type="Label" parent="CanvasLayer/LabelScore"]
+[node name="LabelX" type="Label" parent="CanvasLayer/LabelScore" unique_id=636628147]
 visible = false
 layout_mode = 1
 anchors_preset = 6
@@ -639,7 +663,7 @@ theme_override_constants/outline_size = 4
 theme_override_font_sizes/font_size = 55
 text = "x4"
 
-[node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer"]
+[node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer" unique_id=1835204132]
 anchors_preset = 1
 anchor_left = 1.0
 anchor_right = 1.0
@@ -652,23 +676,23 @@ size_flags_vertical = 4
 theme_override_constants/separation = 25
 alignment = 2
 
-[node name="LabelAllScores" type="Label" parent="CanvasLayer/HBoxContainer"]
+[node name="LabelAllCoins" type="Label" parent="CanvasLayer/HBoxContainer" unique_id=339440571]
 layout_mode = 2
 size_flags_horizontal = 0
 theme_override_font_sizes/font_size = 55
 text = "0"
 
-[node name="Control" type="Control" parent="CanvasLayer/HBoxContainer"]
+[node name="Control" type="Control" parent="CanvasLayer/HBoxContainer" unique_id=291165986]
 custom_minimum_size = Vector2(1, 1)
 layout_mode = 2
 size_flags_vertical = 4
 
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="CanvasLayer/HBoxContainer/Control"]
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="CanvasLayer/HBoxContainer/Control" unique_id=1846506056]
 scale = Vector2(3, 3)
 sprite_frames = ExtResource("12_fevyy")
 autoplay = "default"
 
-[node name="ShopPanel" type="Panel" parent="CanvasLayer"]
+[node name="ShopPanel" type="Panel" parent="CanvasLayer" unique_id=36673001]
 visible = false
 custom_minimum_size = Vector2(400, 500)
 anchors_preset = 8
@@ -684,7 +708,7 @@ grow_horizontal = 2
 grow_vertical = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_ueoa1")
 
-[node name="MarginContainer" type="MarginContainer" parent="CanvasLayer/ShopPanel"]
+[node name="MarginContainer" type="MarginContainer" parent="CanvasLayer/ShopPanel" unique_id=1901317357]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -696,16 +720,16 @@ theme_override_constants/margin_top = 15
 theme_override_constants/margin_right = 15
 theme_override_constants/margin_bottom = 15
 
-[node name="VScrollBar" type="ScrollContainer" parent="CanvasLayer/ShopPanel/MarginContainer"]
+[node name="VScrollBar" type="ScrollContainer" parent="CanvasLayer/ShopPanel/MarginContainer" unique_id=326213618]
 layout_mode = 2
 horizontal_scroll_mode = 0
 
-[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/ShopPanel/MarginContainer/VScrollBar"]
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/ShopPanel/MarginContainer/VScrollBar" unique_id=722103062]
 layout_mode = 2
 size_flags_horizontal = 3
 theme_override_constants/separation = 10
 
-[node name="Panel" type="Panel" parent="CanvasLayer"]
+[node name="Panel" type="Panel" parent="CanvasLayer" unique_id=1190940411]
 custom_minimum_size = Vector2(250, 72)
 anchors_preset = 7
 anchor_left = 0.5
@@ -720,8 +744,8 @@ grow_horizontal = 2
 grow_vertical = 0
 theme_override_styles/panel = SubResource("StyleBoxFlat_7k868")
 
-[node name="ShopButton" type="HBoxContainer" parent="CanvasLayer/Panel"]
-layout_mode = 2
+[node name="ShopButton" type="HBoxContainer" parent="CanvasLayer/Panel" unique_id=1853895068]
+layout_mode = 0
 offset_left = 10.0
 offset_top = 4.0
 offset_right = 240.0
@@ -731,20 +755,20 @@ grow_vertical = 2
 pivot_offset = Vector2(125, 32)
 alignment = 1
 
-[node name="Control" type="Control" parent="CanvasLayer/Panel/ShopButton"]
+[node name="Control" type="Control" parent="CanvasLayer/Panel/ShopButton" unique_id=762177357]
 custom_minimum_size = Vector2(64, 64)
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
 
-[node name="Icon" type="AnimatedSprite2D" parent="CanvasLayer/Panel/ShopButton/Control"]
+[node name="Icon" type="AnimatedSprite2D" parent="CanvasLayer/Panel/ShopButton/Control" unique_id=48689002]
 scale = Vector2(4, 4)
 sprite_frames = SubResource("SpriteFrames_6bp64")
 animation = &"0"
 speed_scale = 2.0
 centered = false
 
-[node name="ShopButton" type="Button" parent="CanvasLayer/Panel/ShopButton"]
+[node name="ShopButton" type="Button" parent="CanvasLayer/Panel/ShopButton" unique_id=1469236631]
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
@@ -754,7 +778,27 @@ theme_override_font_sizes/font_size = 40
 text = "Внешность"
 flat = true
 
-[node name="Stick" type="ColorRect" parent="."]
+[node name="AbilityButton" type="Button" parent="CanvasLayer" unique_id=1477706481]
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -88.0
+offset_top = 120.0
+offset_right = -8.0
+offset_bottom = 200.0
+grow_horizontal = 0
+pivot_offset = Vector2(21, 21)
+focus_mode = 0
+theme_override_font_sizes/font_size = 40
+theme_override_styles/normal = SubResource("StyleBoxFlat_6vcvc")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_hpc6h")
+theme_override_styles/hover = SubResource("StyleBoxFlat_hpc6h")
+toggle_mode = true
+icon = ExtResource("15_ee4r6")
+icon_alignment = 1
+expand_icon = true
+
+[node name="Stick" type="ColorRect" parent="." unique_id=1406447175]
 visible = false
 offset_left = 247.0
 offset_top = 549.0
@@ -764,47 +808,47 @@ rotation = 3.14159
 pivot_offset = Vector2(7, 0)
 color = Color(0, 0, 0, 1)
 
-[node name="ParallaxBackground2" type="ParallaxBackground" parent="."]
+[node name="ParallaxBackground2" type="ParallaxBackground" parent="." unique_id=982056047]
 visible = false
 scroll_base_scale = Vector2(0.1, 0.1)
 
-[node name="ParallaxLayer" type="ParallaxLayer" parent="ParallaxBackground2"]
+[node name="ParallaxLayer" type="ParallaxLayer" parent="ParallaxBackground2" unique_id=1174794775]
 motion_mirroring = Vector2(500, 0)
 
-[node name="1" type="Sprite2D" parent="ParallaxBackground2/ParallaxLayer"]
+[node name="1" type="Sprite2D" parent="ParallaxBackground2/ParallaxLayer" unique_id=2036197651]
 position = Vector2(259, 478)
 scale = Vector2(0.934028, 2.98302)
 texture = ExtResource("12_fdnlq")
 
-[node name="ParallaxLayer2" type="ParallaxLayer" parent="ParallaxBackground2"]
+[node name="ParallaxLayer2" type="ParallaxLayer" parent="ParallaxBackground2" unique_id=1788928280]
 motion_mirroring = Vector2(800, 0)
 
-[node name="2" type="Sprite2D" parent="ParallaxBackground2/ParallaxLayer2"]
+[node name="2" type="Sprite2D" parent="ParallaxBackground2/ParallaxLayer2" unique_id=89417268]
 position = Vector2(108, 110)
 texture = ExtResource("7_6bp64")
 
-[node name="ParallaxLayer3" type="ParallaxLayer" parent="ParallaxBackground2"]
+[node name="ParallaxLayer3" type="ParallaxLayer" parent="ParallaxBackground2" unique_id=1725440042]
 motion_mirroring = Vector2(1500, 0)
 
-[node name="3" type="Sprite2D" parent="ParallaxBackground2/ParallaxLayer3"]
+[node name="3" type="Sprite2D" parent="ParallaxBackground2/ParallaxLayer3" unique_id=765620473]
 position = Vector2(676, -51)
 texture = ExtResource("8_ynf5e")
 
-[node name="ParallaxLayer4" type="ParallaxLayer" parent="ParallaxBackground2"]
+[node name="ParallaxLayer4" type="ParallaxLayer" parent="ParallaxBackground2" unique_id=1765654881]
 motion_mirroring = Vector2(600, 0)
 
-[node name="3" type="Sprite2D" parent="ParallaxBackground2/ParallaxLayer4"]
+[node name="3" type="Sprite2D" parent="ParallaxBackground2/ParallaxLayer4" unique_id=2016520662]
 position = Vector2(352, 397)
 texture = ExtResource("8_ynf5e")
 
-[node name="ParallaxLayer5" type="ParallaxLayer" parent="ParallaxBackground2"]
+[node name="ParallaxLayer5" type="ParallaxLayer" parent="ParallaxBackground2" unique_id=590548917]
 motion_mirroring = Vector2(700, 0)
 
-[node name="5" type="Sprite2D" parent="ParallaxBackground2/ParallaxLayer5"]
+[node name="5" type="Sprite2D" parent="ParallaxBackground2/ParallaxLayer5" unique_id=1657312830]
 position = Vector2(212, 883)
 texture = ExtResource("13_jkdf5")
 
-[node name="AnimatedSpriteBonus" type="AnimatedSprite2D" parent="."]
+[node name="AnimatedSpriteBonus" type="AnimatedSprite2D" parent="." unique_id=1010534946]
 top_level = true
 position = Vector2(-127, -24)
 scale = Vector2(3, 3)
@@ -814,11 +858,11 @@ frame = 17
 frame_progress = 1.0
 speed_scale = 8.0
 
-[node name="AudioStreamPlayerHit" type="AudioStreamPlayer" parent="."]
+[node name="AudioStreamPlayerHit" type="AudioStreamPlayer" parent="." unique_id=1683362248]
 stream = ExtResource("18_b3802")
 volume_db = -30.0
 
-[node name="XBonusLabel" type="Label" parent="."]
+[node name="XBonusLabel" type="Label" parent="." unique_id=1329905858]
 offset_left = -75.0
 offset_right = -35.0
 offset_bottom = 60.0
@@ -826,15 +870,15 @@ theme_override_colors/font_color = Color(1, 1, 1, 1)
 theme_override_font_sizes/font_size = 55
 text = "0"
 
-[node name="AudioStreamPlayerSwipe" type="AudioStreamPlayer" parent="."]
+[node name="AudioStreamPlayerSwipe" type="AudioStreamPlayer" parent="." unique_id=453903184]
 stream = ExtResource("20_hibaj")
 volume_db = -30.0
 
-[node name="AudioStreamPlayerDefeat" type="AudioStreamPlayer" parent="."]
+[node name="AudioStreamPlayerDefeat" type="AudioStreamPlayer" parent="." unique_id=1999524190]
 stream = ExtResource("17_h1bgf")
 volume_db = -20.0
 
-[node name="AudioStreamPlayerScoreX" type="AudioStreamPlayer" parent="."]
+[node name="AudioStreamPlayerScoreX" type="AudioStreamPlayer" parent="." unique_id=129623287]
 stream = ExtResource("18_fevyy")
 volume_db = -20.0
 
@@ -842,3 +886,4 @@ volume_db = -20.0
 [connection signal="pressed" from="CanvasLayer/EndGamePanel/MarginContainer/HBoxContainer/ResetGameButton" to="." method="_on_reset_game_button_pressed"]
 [connection signal="pressed" from="CanvasLayer/EndGamePanel/MarginContainer/HBoxContainer/CancelButton" to="." method="_on_cancel_button_pressed"]
 [connection signal="pressed" from="CanvasLayer/Panel/ShopButton/ShopButton" to="." method="_on_shop_button_pressed"]
+[connection signal="toggled" from="CanvasLayer/AbilityButton" to="." method="_on_ability_button_toggled"]
