@@ -11,11 +11,11 @@ class_name Slot
 var skin: Skins.Type
 var cost: int
 var coins
+var all_score
 var type_cost: Skins.TypeCost
 var available := false
 
 signal on_click
-
 
 func _ready() -> void:
 	sprite.animation = str(skin)
@@ -30,7 +30,11 @@ func _ready() -> void:
 
 func _on_gui_input(event: InputEvent) -> void:
 	if event is InputEventMouseButton and Input.is_action_pressed("mouse_action"):
-		var can_buy = coins >= cost
+		var can_buy
+		if type_cost == Skins.TypeCost.COIN:
+			can_buy = coins >= cost 
+		if type_cost == Skins.TypeCost.SCORE:
+			can_buy = all_score >= cost
 		emit_signal("on_click", skin, can_buy)
 
 

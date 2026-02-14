@@ -2,40 +2,119 @@
 
 [ext_resource type="StyleBox" uid="uid://cxps47qtey8f7" path="res://themes/default_slot.tres" id="1_th82r"]
 [ext_resource type="Script" uid="uid://wvl17ja8kfnw" path="res://Code/slot.gd" id="2_nsp58"]
-[ext_resource type="Texture2D" uid="uid://b0jpo2epsdxav" path="res://Sprites/Basic Charakter Spritesheet.png" id="2_typyk"]
-[ext_resource type="Texture2D" uid="uid://2f7hrq1isdph" path="res://Sprites/ninja_skin.png" id="3_nsp58"]
-[ext_resource type="Texture2D" uid="uid://c3bhfxhq1s1yl" path="res://Sprites/pumpkin_skin.png" id="4_57lr3"]
-[ext_resource type="Texture2D" uid="uid://codvwl28bvygq" path="res://Sprites/white_skin.png" id="5_8bc2s"]
+[ext_resource type="Texture2D" uid="uid://dhg58vrb6ibln" path="res://Sprites/characters.png" id="3_67ou1"]
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_7k868"]
-atlas = ExtResource("2_typyk")
-region = Rect2(112, 160, 16, 16)
+[sub_resource type="AtlasTexture" id="AtlasTexture_54nrm"]
+atlas = ExtResource("3_67ou1")
+region = Rect2(0, 0, 16, 16)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_hpc6h"]
-atlas = ExtResource("3_nsp58")
+[sub_resource type="AtlasTexture" id="AtlasTexture_55jeb"]
+atlas = ExtResource("3_67ou1")
 region = Rect2(16, 0, 16, 16)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_kltya"]
-atlas = ExtResource("4_57lr3")
-region = Rect2(16, 0, 16, 16)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_6vcvc"]
-atlas = ExtResource("5_8bc2s")
+[sub_resource type="AtlasTexture" id="AtlasTexture_gsvbx"]
+atlas = ExtResource("3_67ou1")
 region = Rect2(32, 0, 16, 16)
 
-[sub_resource type="SpriteFrames" id="SpriteFrames_7k868"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_bv80c"]
+atlas = ExtResource("3_67ou1")
+region = Rect2(48, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ptfg5"]
+atlas = ExtResource("3_67ou1")
+region = Rect2(0, 16, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2daye"]
+atlas = ExtResource("3_67ou1")
+region = Rect2(16, 16, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1semv"]
+atlas = ExtResource("3_67ou1")
+region = Rect2(32, 16, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2060n"]
+atlas = ExtResource("3_67ou1")
+region = Rect2(48, 16, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6ml46"]
+atlas = ExtResource("3_67ou1")
+region = Rect2(0, 32, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qax2n"]
+atlas = ExtResource("3_67ou1")
+region = Rect2(16, 32, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_y86h7"]
+atlas = ExtResource("3_67ou1")
+region = Rect2(32, 32, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_my4ki"]
+atlas = ExtResource("3_67ou1")
+region = Rect2(48, 32, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_lx3vj"]
+atlas = ExtResource("3_67ou1")
+region = Rect2(0, 48, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ynmfv"]
+atlas = ExtResource("3_67ou1")
+region = Rect2(16, 48, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_cblf0"]
+atlas = ExtResource("3_67ou1")
+region = Rect2(32, 48, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_nay3j"]
+atlas = ExtResource("3_67ou1")
+region = Rect2(48, 48, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ovafv"]
+atlas = ExtResource("3_67ou1")
+region = Rect2(0, 64, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_owhal"]
+atlas = ExtResource("3_67ou1")
+region = Rect2(16, 64, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_uv6w5"]
+atlas = ExtResource("3_67ou1")
+region = Rect2(32, 64, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_r7bbj"]
+atlas = ExtResource("3_67ou1")
+region = Rect2(48, 64, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_c828r"]
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_7k868")
+"texture": SubResource("AtlasTexture_54nrm")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_55jeb")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_gsvbx")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_bv80c")
 }],
-"loop": false,
+"loop": true,
 "name": &"0",
 "speed": 5.0
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_hpc6h")
+"texture": SubResource("AtlasTexture_ptfg5")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2daye")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_1semv")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2060n")
 }],
 "loop": true,
 "name": &"1",
@@ -43,7 +122,16 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_kltya")
+"texture": SubResource("AtlasTexture_6ml46")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qax2n")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_y86h7")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_my4ki")
 }],
 "loop": true,
 "name": &"2",
@@ -51,10 +139,36 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_6vcvc")
+"texture": SubResource("AtlasTexture_lx3vj")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ynmfv")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_cblf0")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_nay3j")
 }],
-"loop": false,
+"loop": true,
 "name": &"3",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ovafv")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_owhal")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_uv6w5")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_r7bbj")
+}],
+"loop": true,
+"name": &"4",
 "speed": 5.0
 }]
 
@@ -85,16 +199,19 @@ size_flags_horizontal = 0
 size_flags_vertical = 4
 mouse_filter = 1
 
-[node name="Sprite" type="AnimatedSprite2D" parent="MarginContainer/HBoxContainer/Control" unique_id=1211912790]
+[node name="Sprite" type="AnimatedSprite2D" parent="MarginContainer/HBoxContainer/Control" unique_id=60174318]
 scale = Vector2(4, 4)
-sprite_frames = SubResource("SpriteFrames_7k868")
+sprite_frames = SubResource("SpriteFrames_c828r")
 animation = &"0"
+speed_scale = 2.0
 centered = false
 
 [node name="LabelCost" type="Label" parent="MarginContainer/HBoxContainer" unique_id=1546781650]
+custom_minimum_size = Vector2(1, 0)
 layout_mode = 2
 size_flags_horizontal = 10
 theme_override_font_sizes/font_size = 40
+vertical_alignment = 1
 
 [connection signal="focus_exited" from="." to="." method="_on_focus_exited"]
 [connection signal="gui_input" from="." to="." method="_on_gui_input"]

@@ -39,6 +39,7 @@ var platfrom_1: Platform
 var platfrom_2: Platform
 var center_platform_size_y := 6
 var score := 0
+var record_score := 0
 var coins := 0
 var game_is_starting := false
 var temp_stick_position
@@ -48,16 +49,19 @@ var tween_label_score: Tween
 var current_skin = Skins.Type.DEFAULT
 var current_dashed_line_length = 0
 var can_ability = false
-var available_skins: Array[Skins.Type] = []
+var available_skins := 1
 var words = {
 	"ru": ["ВАУ!", "Круто!", "Класс!", "Великолепно!", "Превосходно!"],
 	"en": ["WOW!", "Cool!", "Awesome!", "Fabulous!", "Perfect!"]
 }
+var language
+
 
 func _ready() -> void:
+	get_data()
 	print("platform - ", Bridge.platform.id)
-	TranslationServer.set_locale(Bridge.platform.language)
-	available_skins.append(Skins.Type.DEFAULT)
+	language = Bridge.platform.language
+	TranslationServer.set_locale(language)
 	update_shop()
 	animated_sprite_2d.animation = str(current_skin)
 	icon.animation = str(current_skin)
@@ -66,7 +70,7 @@ func _ready() -> void:
 func _physics_process(_delta: float) -> void:
 	#pass
 	if game_is_starting:
-		if Input.is_action_pressed("ui_up") or Input.is_action_pressed("mouse_action") or Input.emulate_touch_from_mouse:
+		if Input.is_action_pressed("ui_up") or Input.is_action_pressed("mouse_action"):
 			#if get_viewport().gui_get_focus_owner() != null or get_viewport().gui_is_dragging():
 				#return
 			stick.size.y += 3
@@ -84,10 +88,16 @@ func _draw() -> void:
 
 
 func start_game() -> void:
+	print("authorization - ", Bridge.player.is_authorized) # bool
 	clear_platforms()
 	parallax_background.visible = false
 	parallax_background_2.visible = false
 	score = 0
+	get_data()
+	# тут надо подсосать инфу с хранилища
+	#var record_score := 0
+	#var coins := 0
+	#available_skins
 	hit_center_counter = 1
 	label_score.text = str(score)
 	start_game_button.visible = false
@@ -116,6 +126,8 @@ func start_game() -> void:
 
 func move_player_to_platform() -> void:
 	score += 1
+	if record_score < score:
+		record_score = score
 	label_score.text = str(score)
 	animated_sprite_2d.play(str(current_skin))
 	var tween = get_tree().create_tween()
@@ -202,7 +214,7 @@ func hit_to_center() -> void:
 	x_bonus_label.position.y = platfrom_2.position.y
 	x_bonus_label.position.x = platfrom_2.position.x + randi_range(10, 50)
 	x_bonus_label.modulate.a = 1.0
-	x_bonus_label.text = words[Bridge.platform.language].pick_random()
+	x_bonus_label.text = words[language].pick_random()
 		
 	var tween_x_bonus = get_tree().create_tween()
 	tween_x_bonus.set_parallel(true)
@@ -221,6 +233,7 @@ func hit_to_center() -> void:
 
 
 func stick_defeat() -> void:
+	save_data()
 	audio_stream_player_defeat.play()
 	camera_2d.camera_zoom_defeat()
 	var tween = get_tree().create_tween()
@@ -229,7 +242,7 @@ func stick_defeat() -> void:
 	tween.finished.connect(func(): 
 		end_game_panel.visible = true
 		result_score_label.text = tr("KEY_SCORE") + ": " + str(score)
-		best_score_label.text = tr("KEY_RECORD") + ": " + str(score)
+		best_score_label.text = tr("KEY_RECORD") + ": " + str(record_score)
 		stick.rotation_degrees = 180
 		platfrom_2.defeat()
 		stick.visible = false
@@ -286,6 +299,8 @@ func _on_reset_game_button_pressed() -> void:
 
 
 func _on_cancel_button_pressed() -> void:
+	label_score.text = "0"
+	hide_label_x()
 	player.visible = false
 	clear_platforms()
 	camera_2d.camera_zoom_start_game()
@@ -322,10 +337,16 @@ func update_shop() -> void:
 		slot.cost = Skins.List[s]["cost"]
 		slot.type_cost = Skins.List[s]["type_cost"]
 		slot.coins = coins	
-		slot.available = available_skins.has(s)
+		slot.all_score = record_score
+		slot.available = has_skin(Skins.TypeToBit[s])
 		slot.on_click.connect(func(skin, can_buy): 
-			if can_buy: available_skins.append(skin)
-			if available_skins.has(skin):
+			if can_buy and not has_skin(Skins.TypeToBit[skin]): 
+				unlock_skin(Skins.TypeToBit[skin])
+				if not Skins.List[s]["type_cost"] == Skins.TypeCost.SCORE:
+					coins = coins - int(Skins.List[skin]["cost"])
+				label_coins.text = str(coins)
+				save_data()
+			if has_skin(Skins.TypeToBit[skin]):
 				slot.select(skin)
 				shop_panel.visible = false
 				current_skin = skin
@@ -334,3 +355,53 @@ func update_shop() -> void:
 			)
 		v_box_container.add_child(slot)
 		slot.select(current_skin)
+
+
+func hide_label_x() -> void:
+	label_x.visible = false
+	label_x.text = "x" + "0"
+	
+	
+func save_data() -> void:
+	if Bridge.storage.is_supported("platform_internal"):
+		if Bridge.storage.is_available("platform_internal"):
+			Bridge.storage.set(["record_score", "coins", "available_skins"], [record_score, coins, available_skins], Callable(self, "_on_storage_set_completed"))
+			
+
+func get_data() -> void:
+	if Bridge.storage.is_supported("platform_internal"):
+		if Bridge.storage.is_available("platform_internal"):
+			Bridge.storage.get(["record_score", "coins", "available_skins"], Callable(self, "_on_storage_get_completed"))
+
+
+func _on_storage_set_completed(success) -> void:
+	if success:
+		print("Данные успешно сохранены")
+		print("save data - ")
+	else:
+		print("Ошибка сохранения")
+
+
+func _on_storage_get_completed(success, data) -> void:
+	if success:
+		if data[0] != null: record_score = data[0]
+		if data[1] != null: coins = data[1]; label_coins.text = str(data[1])
+		if data[2] != null: available_skins = data[2]
+		else:
+			unlock_skin(Skins.TypeToBit[Skins.Type.DEFAULT])
+			coins = 0
+			record_score = 0
+			label_coins.text = str(coins)
+	else:
+		unlock_skin(Skins.TypeToBit[Skins.Type.DEFAULT])
+		coins = 0
+		record_score = 0
+		label_coins.text = str(coins)
+
+
+func unlock_skin(skin_value: int):
+	available_skins = available_skins | skin_value
+
+
+func has_skin(skin_value: int) -> bool:
+	return (available_skins & skin_value) != 0
