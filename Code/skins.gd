@@ -13,7 +13,7 @@ const List: Dictionary[Type, Dictionary] = {
 	},
 	Type.WHITE: {
 		"description": "белый катается с фломом",
-		"cost": 500,
+		"cost": 5,
 		"type_cost": TypeCost.COIN
 	},
 	Type.NINJA: {

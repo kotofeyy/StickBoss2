@@ -17,7 +17,6 @@
 [ext_resource type="Texture2D" uid="uid://d3053pmsoadc7" path="res://Sprites/Backgrounds/Background_2/5.png" id="13_jkdf5"]
 [ext_resource type="Texture2D" uid="uid://db0gc1656c6ac" path="res://Sprites/PoisonCast_96x96.png" id="14_jkdf5"]
 [ext_resource type="Texture2D" uid="uid://c3bhfxhq1s1yl" path="res://Sprites/pumpkin_skin.png" id="14_pdsj5"]
-[ext_resource type="Texture2D" uid="uid://fe4mwjugxwhy" path="res://Sprites/metr.png" id="15_ee4r6"]
 [ext_resource type="AudioStream" uid="uid://bagq4ajruxin8" path="res://Sounds/defeat.wav" id="17_h1bgf"]
 [ext_resource type="AudioStream" uid="uid://ben86vgtbfkcj" path="res://Sounds/hit_to_center_2.wav" id="18_b3802"]
 [ext_resource type="AudioStream" uid="uid://ditnhd8xfre28" path="res://Sounds/score_x_up.wav" id="18_fevyy"]
@@ -270,29 +269,6 @@ corner_radius_top_right = 8
 corner_radius_bottom_right = 8
 corner_radius_bottom_left = 8
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_6vcvc"]
-bg_color = Color(0.60038817, 0.60038817, 0.60038817, 0)
-border_width_left = 4
-border_width_top = 4
-border_width_right = 4
-border_width_bottom = 4
-border_color = Color(0, 0, 0, 1)
-corner_radius_top_left = 50
-corner_radius_top_right = 50
-corner_radius_bottom_right = 50
-corner_radius_bottom_left = 50
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_hpc6h"]
-border_width_left = 5
-border_width_top = 5
-border_width_right = 5
-border_width_bottom = 5
-border_color = Color(1, 1, 0, 1)
-corner_radius_top_left = 50
-corner_radius_top_right = 50
-corner_radius_bottom_right = 50
-corner_radius_bottom_left = 50
-
 [sub_resource type="AtlasTexture" id="AtlasTexture_b3802"]
 atlas = ExtResource("14_jkdf5")
 region = Rect2(1728, 0, 96, 96)
@@ -452,6 +428,7 @@ ignore_rotation = false
 script = ExtResource("3_b3802")
 
 [node name="ParallaxBackground" type="ParallaxBackground" parent="." unique_id=167887604]
+layer = -50
 scroll_base_scale = Vector2(0.175, 0.175)
 
 [node name="ParallaxLayer" type="ParallaxLayer" parent="ParallaxBackground" unique_id=479371508]
@@ -528,7 +505,7 @@ theme_override_font_sizes/font_size = 55
 theme_override_styles/normal = SubResource("StyleBoxFlat_3pmx8")
 theme_override_styles/pressed = SubResource("StyleBoxFlat_cbgmd")
 theme_override_styles/hover = SubResource("StyleBoxFlat_u50mg")
-text = "Нажмите, чтобы начать"
+text = "KEY_START"
 
 [node name="EndGamePanel" type="Panel" parent="CanvasLayer" unique_id=1897201817]
 visible = false
@@ -574,7 +551,7 @@ theme_override_font_sizes/font_size = 55
 theme_override_styles/normal = SubResource("StyleBoxFlat_hibaj")
 theme_override_styles/pressed = SubResource("StyleBoxFlat_pdsj5")
 theme_override_styles/hover = SubResource("StyleBoxFlat_1w6v2")
-text = "Да"
+text = "KEY_YES"
 
 [node name="CancelButton" type="Button" parent="CanvasLayer/EndGamePanel/MarginContainer/HBoxContainer" unique_id=182032001]
 layout_mode = 2
@@ -586,7 +563,7 @@ theme_override_font_sizes/font_size = 55
 theme_override_styles/normal = SubResource("StyleBoxFlat_fevyy")
 theme_override_styles/pressed = SubResource("StyleBoxFlat_gt3je")
 theme_override_styles/hover = SubResource("StyleBoxFlat_ee4r6")
-text = "Нет"
+text = "KEY_NO"
 
 [node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/EndGamePanel/MarginContainer" unique_id=895344002]
 layout_mode = 2
@@ -599,6 +576,7 @@ size_flags_vertical = 4
 theme_override_colors/default_color = Color(0, 0, 0, 1)
 theme_override_font_sizes/normal_font_size = 40
 text = "Очки: 50"
+horizontal_alignment = 1
 
 [node name="BestScoreLabel" type="RichTextLabel" parent="CanvasLayer/EndGamePanel/MarginContainer/VBoxContainer" unique_id=386067897]
 custom_minimum_size = Vector2(0, 50)
@@ -607,26 +585,14 @@ size_flags_vertical = 4
 theme_override_colors/default_color = Color(0, 0, 0, 1)
 theme_override_font_sizes/normal_font_size = 40
 text = "Рекорд: 300"
+horizontal_alignment = 1
 
-[node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer/EndGamePanel/MarginContainer/VBoxContainer" unique_id=905733199]
-layout_mode = 2
-size_flags_horizontal = 0
-size_flags_vertical = 4
-
-[node name="RichTextLabel" type="RichTextLabel" parent="CanvasLayer/EndGamePanel/MarginContainer/VBoxContainer/HBoxContainer" unique_id=1632200361]
-custom_minimum_size = Vector2(50, 50)
-layout_mode = 2
-size_flags_vertical = 4
-theme_override_colors/default_color = Color(0, 0, 0, 1)
-theme_override_font_sizes/normal_font_size = 40
-text = "+ 13"
-
-[node name="HeaderLabel" type="RichTextLabel" parent="CanvasLayer/EndGamePanel/MarginContainer/VBoxContainer" unique_id=1441134630]
+[node name="FooterLabel" type="RichTextLabel" parent="CanvasLayer/EndGamePanel/MarginContainer/VBoxContainer" unique_id=1441134630]
 custom_minimum_size = Vector2(0, 60)
 layout_mode = 2
 theme_override_colors/default_color = Color(0, 0, 0, 1)
 theme_override_font_sizes/normal_font_size = 55
-text = "Заново?"
+text = "KEY_RESTART"
 horizontal_alignment = 1
 
 [node name="LabelScore" type="Label" parent="CanvasLayer" unique_id=286568901]
@@ -775,28 +741,8 @@ size_flags_vertical = 4
 focus_mode = 0
 mouse_default_cursor_shape = 2
 theme_override_font_sizes/font_size = 40
-text = "Внешность"
+text = "KEY_SKIN"
 flat = true
-
-[node name="AbilityButton" type="Button" parent="CanvasLayer" unique_id=1477706481]
-anchors_preset = 1
-anchor_left = 1.0
-anchor_right = 1.0
-offset_left = -88.0
-offset_top = 120.0
-offset_right = -8.0
-offset_bottom = 200.0
-grow_horizontal = 0
-pivot_offset = Vector2(21, 21)
-focus_mode = 0
-theme_override_font_sizes/font_size = 40
-theme_override_styles/normal = SubResource("StyleBoxFlat_6vcvc")
-theme_override_styles/pressed = SubResource("StyleBoxFlat_hpc6h")
-theme_override_styles/hover = SubResource("StyleBoxFlat_hpc6h")
-toggle_mode = true
-icon = ExtResource("15_ee4r6")
-icon_alignment = 1
-expand_icon = true
 
 [node name="Stick" type="ColorRect" parent="." unique_id=1406447175]
 visible = false
@@ -809,6 +755,7 @@ pivot_offset = Vector2(7, 0)
 color = Color(0, 0, 0, 1)
 
 [node name="ParallaxBackground2" type="ParallaxBackground" parent="." unique_id=982056047]
+layer = -50
 visible = false
 scroll_base_scale = Vector2(0.1, 0.1)
 
@@ -882,8 +829,18 @@ volume_db = -20.0
 stream = ExtResource("18_fevyy")
 volume_db = -20.0
 
+[node name="CanvasLayer2" type="CanvasLayer" parent="." unique_id=2109524105]
+layer = -100
+
+[node name="ColorRect" type="ColorRect" parent="CanvasLayer2" unique_id=1715795183]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.019607844, 0.44313726, 0.7411765, 1)
+
 [connection signal="pressed" from="CanvasLayer/StartGameButton" to="." method="_on_start_game_button_pressed"]
 [connection signal="pressed" from="CanvasLayer/EndGamePanel/MarginContainer/HBoxContainer/ResetGameButton" to="." method="_on_reset_game_button_pressed"]
 [connection signal="pressed" from="CanvasLayer/EndGamePanel/MarginContainer/HBoxContainer/CancelButton" to="." method="_on_cancel_button_pressed"]
 [connection signal="pressed" from="CanvasLayer/Panel/ShopButton/ShopButton" to="." method="_on_shop_button_pressed"]
-[connection signal="toggled" from="CanvasLayer/AbilityButton" to="." method="_on_ability_button_toggled"]

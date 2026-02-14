@@ -1,4 +1,4 @@
-[gd_scene load_steps=6 format=3 uid="uid://d05llmg1igb4g"]
+[gd_scene format=3 uid="uid://d05llmg1igb4g"]
 
 [ext_resource type="Script" uid="uid://byjgi54hameu5" path="res://Code/platform.gd" id="1_1rc8e"]
 [ext_resource type="SpriteFrames" uid="uid://b1dn6geh7uhrh" path="res://Animations/coin.tres" id="2_kul6x"]
@@ -10,7 +10,7 @@ texture = ExtResource("4_mlqre")
 axis_stretch_horizontal = 1
 axis_stretch_vertical = 2
 
-[node name="Platform" type="Control"]
+[node name="Platform" type="Control" unique_id=771798095]
 layout_mode = 3
 anchors_preset = 0
 offset_top = 900.0
@@ -18,7 +18,7 @@ offset_right = 90.0
 offset_bottom = 1150.0
 script = ExtResource("1_1rc8e")
 
-[node name="ControlCenter" type="Control" parent="."]
+[node name="ControlCenter" type="Control" parent="." unique_id=1883374776]
 custom_minimum_size = Vector2(32, 32)
 layout_mode = 1
 anchors_preset = 5
@@ -30,7 +30,7 @@ offset_right = 16.0
 offset_bottom = -5.16498
 grow_horizontal = 2
 
-[node name="CenterContainer" type="CenterContainer" parent="ControlCenter"]
+[node name="CenterContainer" type="CenterContainer" parent="ControlCenter" unique_id=1820854235]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -40,13 +40,13 @@ anchor_bottom = 0.5
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="ControlCenter/CenterContainer"]
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="ControlCenter/CenterContainer" unique_id=2093557797]
 scale = Vector2(2.7, 2.7)
 sprite_frames = ExtResource("2_kul6x")
 autoplay = "default"
 frame_progress = 0.642451
 
-[node name="BasePlatfrom" type="TextureRect" parent="."]
+[node name="BasePlatfrom" type="TextureRect" parent="." unique_id=1546850231]
 self_modulate = Color(1, 1, 1, 0)
 layout_mode = 0
 offset_right = 90.0
@@ -54,7 +54,7 @@ offset_bottom = 285.0
 texture = ExtResource("2_n5262")
 expand_mode = 1
 
-[node name="Panel" type="Panel" parent="BasePlatfrom"]
+[node name="Panel" type="Panel" parent="BasePlatfrom" unique_id=497890613]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -63,7 +63,7 @@ grow_horizontal = 2
 grow_vertical = 2
 theme_override_styles/panel = SubResource("StyleBoxTexture_mlqre")
 
-[node name="VisibleOnScreenEnabler2D" type="VisibleOnScreenEnabler2D" parent="."]
+[node name="VisibleOnScreenEnabler2D" type="VisibleOnScreenEnabler2D" parent="." unique_id=2000167781]
 position = Vector2(43.75, 139)
 scale = Vector2(4.375, 14.5)
 

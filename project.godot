@@ -17,6 +17,15 @@ compatibility/default_parent_skeleton_in_mesh_instance_3d=true
 config/name="stick boss 2"
 run/main_scene="uid://b4iychpqi6vow"
 config/features=PackedStringArray("4.6")
+boot_splash/bg_color=Color(0.019607844, 0.44313726, 0.7411765, 1)
+boot_splash/stretch_mode=0
+boot_splash/use_filter=false
+boot_splash/image="uid://dbg0kiltptned"
+config/icon="uid://b0ixunn1p1re8"
+
+[autoload]
+
+Bridge="*uid://cx4klxojbw6ck"
 
 [config]
 
@@ -30,6 +39,10 @@ window/size/viewport_width=500
 window/size/viewport_height=888
 window/stretch/mode="canvas_items"
 
+[editor_plugins]
+
+enabled=PackedStringArray("res://addons/playgama_bridge/plugin.cfg")
+
 [gui]
 
 theme/custom_font="uid://cuaiqt3abubmb"
@@ -41,6 +54,10 @@ mouse_action={
 "events": [Object(InputEventMouseButton,"resource_local_to_scene":false,"resource_name":"","device":-1,"window_id":0,"alt_pressed":false,"shift_pressed":false,"ctrl_pressed":false,"meta_pressed":false,"button_mask":1,"position":Vector2(144, 18),"global_position":Vector2(153, 66),"factor":1.0,"button_index":1,"canceled":false,"pressed":true,"double_click":false,"script":null)
 ]
 }
+
+[internationalization]
+
+locale/translations=PackedStringArray("res://translation.en.translation", "res://translation.ru.translation")
 
 [rendering]
 
