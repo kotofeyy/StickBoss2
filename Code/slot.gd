@@ -10,25 +10,28 @@ class_name Slot
 @export var description: String
 var skin: Skins.Type
 var cost: int
-var player_score
+var coins
 var type_cost: Skins.TypeCost
+var available := false
 
 signal on_click
 
 
 func _ready() -> void:
 	sprite.animation = str(skin)
-	if type_cost == Skins.TypeCost.COIN:
-		label_cost.text = str(player_score) + "/" + str(cost) + " Монет"
-	if type_cost == Skins.TypeCost.SCORE:
-		label_cost.text = str(cost) + " Очков"
-	if type_cost == Skins.TypeCost.DONAT:
-		label_cost.text = str(cost) + " ДОНАТИК"
+	if not available:
+		if type_cost == Skins.TypeCost.COIN:
+			label_cost.text = str(coins) + "/" + str(cost) + " " + tr("KEY_COIN")
+		if type_cost == Skins.TypeCost.SCORE:
+			label_cost.text = str(cost) + " " + tr("KEY_SCORE")
+	else:
+		label_cost.text = tr("KEY_AVAILABLE")
 
 
 func _on_gui_input(event: InputEvent) -> void:
 	if event is InputEventMouseButton and Input.is_action_pressed("mouse_action"):
-		emit_signal("on_click", skin)
+		var can_buy = coins >= cost
+		emit_signal("on_click", skin, can_buy)
 
 
 func select(s: Skins.Type) -> void:
