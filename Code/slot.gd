@@ -35,10 +35,13 @@ func _on_gui_input(event: InputEvent) -> void:
 
 
 func select(s: Skins.Type) -> void:
-	if selected_slot:
-		if s == skin:
-			add_theme_stylebox_override("panel", selected_slot)
-			grab_focus()
+	if not available:
+		focus_mode = Control.FOCUS_NONE
+	else:
+		if selected_slot:
+			if s == skin:
+				add_theme_stylebox_override("panel", selected_slot)
+				grab_focus()
 
 
 func _clear_select() -> void:

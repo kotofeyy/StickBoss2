@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://bp4nu8jqt2d6h"]
+[gd_scene format=3 uid="uid://bp4nu8jqt2d6h"]
 
 [ext_resource type="StyleBox" uid="uid://cxps47qtey8f7" path="res://themes/default_slot.tres" id="1_th82r"]
 [ext_resource type="Script" uid="uid://wvl17ja8kfnw" path="res://Code/slot.gd" id="2_nsp58"]
@@ -58,7 +58,7 @@ animations = [{
 "speed": 5.0
 }]
 
-[node name="Slot" type="Panel"]
+[node name="Slot" type="Panel" unique_id=929990328]
 custom_minimum_size = Vector2(0, 100)
 focus_mode = 1
 mouse_filter = 1
@@ -66,7 +66,7 @@ mouse_default_cursor_shape = 2
 theme_override_styles/panel = ExtResource("1_th82r")
 script = ExtResource("2_nsp58")
 
-[node name="MarginContainer" type="MarginContainer" parent="."]
+[node name="MarginContainer" type="MarginContainer" parent="." unique_id=1499317860]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -75,23 +75,23 @@ grow_horizontal = 2
 grow_vertical = 2
 theme_override_constants/margin_right = 10
 
-[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer"]
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer" unique_id=922548726]
 layout_mode = 2
 
-[node name="Control" type="Control" parent="MarginContainer/HBoxContainer"]
+[node name="Control" type="Control" parent="MarginContainer/HBoxContainer" unique_id=1226481116]
 custom_minimum_size = Vector2(64, 64)
 layout_mode = 2
 size_flags_horizontal = 0
 size_flags_vertical = 4
 mouse_filter = 1
 
-[node name="Sprite" type="AnimatedSprite2D" parent="MarginContainer/HBoxContainer/Control"]
+[node name="Sprite" type="AnimatedSprite2D" parent="MarginContainer/HBoxContainer/Control" unique_id=1211912790]
 scale = Vector2(4, 4)
 sprite_frames = SubResource("SpriteFrames_7k868")
 animation = &"0"
 centered = false
 
-[node name="LabelCost" type="Label" parent="MarginContainer/HBoxContainer"]
+[node name="LabelCost" type="Label" parent="MarginContainer/HBoxContainer" unique_id=1546781650]
 layout_mode = 2
 size_flags_horizontal = 10
 theme_override_font_sizes/font_size = 40

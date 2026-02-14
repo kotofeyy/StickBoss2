@@ -56,8 +56,7 @@ var words = {
 
 func _ready() -> void:
 	print("platform - ", Bridge.platform.id)
-	print("language - ", Bridge.platform.language)
-	
+	TranslationServer.set_locale(Bridge.platform.language)
 	available_skins.append(Skins.Type.DEFAULT)
 	update_shop()
 	animated_sprite_2d.animation = str(current_skin)
@@ -75,10 +74,6 @@ func _physics_process(_delta: float) -> void:
 
 		if Input.is_action_just_released("ui_up") or Input.is_action_just_released("mouse_action"):
 			rotate_stick()
-
-
-func _unhandled_input(_event: InputEvent) -> void:
-	pass
 
 
 func _draw() -> void:
@@ -234,7 +229,7 @@ func stick_defeat() -> void:
 	tween.finished.connect(func(): 
 		end_game_panel.visible = true
 		result_score_label.text = tr("KEY_SCORE") + ": " + str(score)
-		best_score_label.text = "Рекорд очков: " + str(score)
+		best_score_label.text = tr("KEY_RECORD") + ": " + str(score)
 		stick.rotation_degrees = 180
 		platfrom_2.defeat()
 		stick.visible = false
@@ -282,8 +277,7 @@ func _on_start_game_button_pressed() -> void:
 
 
 func _on_reset_game_button_pressed() -> void:
-	var placement = "test_placement" # optional
-	Bridge.advertisement.show_interstitial(placement)
+	Bridge.advertisement.show_interstitial()
 	camera_2d.camera_zoom_start_game()
 	end_game_panel.visible = false
 	start_game()
@@ -299,7 +293,7 @@ func _on_cancel_button_pressed() -> void:
 	await get_tree().create_timer(0.5).timeout
 	start_game_button.visible = true
 	shop_button_panel.visible = true
-	
+
 
 func _on_shop_button_pressed() -> void:
 	var placement = "test_placement" # optional
