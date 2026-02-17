@@ -1,4 +1,4 @@
-extends Node2D
+extends Control
 
 
 @onready var player: Control = $Player
@@ -25,6 +25,9 @@ extends Node2D
 
 @onready var parallax_background: ParallaxBackground = $ParallaxBackground
 @onready var parallax_background_2: ParallaxBackground = $ParallaxBackground2
+@onready var parallax_background_2_1: ParallaxBackground = $ParallaxBackground2_1
+@onready var parallax_background_1: ParallaxBackground = $ParallaxBackground_1
+@onready var parallax_background_1_1: ParallaxBackground = $ParallaxBackground_1_1
 
 @onready var v_box_container: VBoxContainer = $CanvasLayer/ShopPanel/MarginContainer/VScrollBar/VBoxContainer
 @onready var shop_panel: Panel = $CanvasLayer/ShopPanel
@@ -58,6 +61,7 @@ var language
 
 
 func _ready() -> void:
+	Bridge.platform.send_message("game_ready")
 	get_data()
 	print("platform - ", Bridge.platform.id)
 	language = Bridge.platform.language
@@ -91,7 +95,10 @@ func start_game() -> void:
 	print("authorization - ", Bridge.player.is_authorized) # bool
 	clear_platforms()
 	parallax_background.visible = false
+	parallax_background_1.visible = false
 	parallax_background_2.visible = false
+	parallax_background_2_1.visible = false
+	parallax_background_1_1.visible = false
 	score = 0
 	get_data()
 	# тут надо подсосать инфу с хранилища
@@ -107,8 +114,8 @@ func start_game() -> void:
 	shop_button_panel.visible = false
 	
 	match (randi_range(1,2)):
-		1: parallax_background.visible = true
-		2: parallax_background_2.visible = true
+		1: parallax_background.visible = true; parallax_background_1.visible = true; parallax_background_1_1.visible = true
+		2: parallax_background_2.visible = true; parallax_background_2_1.visible = true
 	
 	platfrom_1 = platform_preload.instantiate()
 	platfrom_2 = platform_preload.instantiate()

@@ -6,7 +6,7 @@ func applay_shake() -> void:
 	tween.set_parallel(true)
 	tween.tween_property(self, "zoom", Vector2(1.1, 1.1), 0.1)
 	tween.chain().tween_property(self, "zoom", Vector2(1.0, 1.0), 0.1)
-	tween.tween_property(self, "rotation_degrees", randi_range(-1, 1), 0.1)
+	tween.tween_property(self, "rotation_degrees", randi_range(-15, 15), 0.1)
 	tween.chain().tween_property(self, "rotation_degrees", 0, 0.1)
 
 
