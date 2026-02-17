@@ -3,7 +3,7 @@
 [ext_resource type="Script" uid="uid://byjgi54hameu5" path="res://Code/platform.gd" id="1_1rc8e"]
 [ext_resource type="SpriteFrames" uid="uid://b1dn6geh7uhrh" path="res://Animations/coin.tres" id="2_kul6x"]
 [ext_resource type="Texture2D" uid="uid://clo30vfvutmji" path="res://Sprites/Platforms/basic_platform.png" id="2_n5262"]
-[ext_resource type="Texture2D" uid="uid://da03wb1i0a44n" path="res://Sprites/Platforms/tree_platform.png" id="4_mlqre"]
+[ext_resource type="Texture2D" uid="uid://dvsijk2ryn41b" path="res://Sprites/Platforms/new_platform.png" id="4_mlqre"]
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_mlqre"]
 texture = ExtResource("4_mlqre")
@@ -55,10 +55,12 @@ texture = ExtResource("2_n5262")
 expand_mode = 1
 
 [node name="Panel" type="Panel" parent="BasePlatfrom" unique_id=497890613]
+texture_repeat = 2
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
+offset_bottom = 285.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_styles/panel = SubResource("StyleBoxTexture_mlqre")

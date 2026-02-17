@@ -9,10 +9,8 @@
 [ext_resource type="Texture2D" uid="uid://dhtehegrpw4c0" path="res://Sprites/Backgrounds/Background_1/4.png" id="6_21xkr"]
 [ext_resource type="Texture2D" uid="uid://7ubcjkn3ie8e" path="res://Sprites/Backgrounds/Background_2/2.png" id="7_6bp64"]
 [ext_resource type="Texture2D" uid="uid://b8uryowvosg08" path="res://Sprites/Backgrounds/Background_2/3.png" id="8_ynf5e"]
-[ext_resource type="Texture2D" uid="uid://boavks70fthm4" path="res://Sprites/Backgrounds/Background_2/4.png" id="9_hptm8"]
 [ext_resource type="Texture2D" uid="uid://ce0ujjbqpde12" path="res://Sprites/Backgrounds/Background_2/1.png" id="12_fdnlq"]
 [ext_resource type="SpriteFrames" uid="uid://b1dn6geh7uhrh" path="res://Animations/coin.tres" id="12_fevyy"]
-[ext_resource type="Texture2D" uid="uid://d3053pmsoadc7" path="res://Sprites/Backgrounds/Background_2/5.png" id="13_jkdf5"]
 [ext_resource type="Texture2D" uid="uid://db0gc1656c6ac" path="res://Sprites/PoisonCast_96x96.png" id="14_jkdf5"]
 [ext_resource type="AudioStream" uid="uid://bagq4ajruxin8" path="res://Sounds/defeat.wav" id="17_h1bgf"]
 [ext_resource type="AudioStream" uid="uid://ben86vgtbfkcj" path="res://Sounds/hit_to_center_2.wav" id="18_b3802"]
@@ -433,12 +431,17 @@ animations = [{
 "speed": 5.0
 }]
 
-[node name="Main" type="Node2D" unique_id=698023136]
+[node name="Main" type="Control" unique_id=1447691715]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 script = ExtResource("1_bo1nx")
 
 [node name="Player" type="Control" parent="." unique_id=651379926]
 visible = false
-layout_mode = 3
 anchors_preset = 0
 offset_left = 181.0
 offset_top = 607.0
@@ -455,64 +458,58 @@ speed_scale = 2.0
 [node name="Camera2D" type="Camera2D" parent="Player" unique_id=1775696703]
 position = Vector2(190, -163)
 ignore_rotation = false
+limit_enabled = false
 script = ExtResource("3_b3802")
 
 [node name="ParallaxBackground" type="ParallaxBackground" parent="." unique_id=167887604]
 layer = -50
+follow_viewport_enabled = true
 scroll_base_scale = Vector2(0.175, 0.175)
 
 [node name="ParallaxLayer" type="ParallaxLayer" parent="ParallaxBackground" unique_id=479371508]
-motion_mirroring = Vector2(500, 0)
+motion_mirroring = Vector2(5760, 0)
 
 [node name="1" type="Sprite2D" parent="ParallaxBackground/ParallaxLayer" unique_id=932977760]
+texture_repeat = 2
 position = Vector2(315, 438)
 scale = Vector2(1.09375, 2.88272)
 texture = ExtResource("3_8gbba")
-
-[node name="ParallaxLayer7" type="ParallaxLayer" parent="ParallaxBackground" unique_id=1372648414]
-motion_mirroring = Vector2(1500, 0)
-
-[node name="4" type="Sprite2D" parent="ParallaxBackground/ParallaxLayer7" unique_id=169015905]
-position = Vector2(671, 606)
-texture = ExtResource("9_hptm8")
+region_enabled = true
+region_rect = Rect2(0, 0, 5760, 324)
 
 [node name="ParallaxLayer4" type="ParallaxLayer" parent="ParallaxBackground" unique_id=1198007517]
-motion_mirroring = Vector2(500, 0)
+motion_mirroring = Vector2(5027.78, 0)
 
 [node name="4" type="Sprite2D" parent="ParallaxBackground/ParallaxLayer4" unique_id=853624604]
+texture_repeat = 2
 position = Vector2(236.569, 631.195)
 scale = Vector2(0.873023, 0.873023)
 texture = ExtResource("6_21xkr")
+region_enabled = true
+region_rect = Rect2(0, 0, 5760, 324)
 
 [node name="ParallaxLayer2" type="ParallaxLayer" parent="ParallaxBackground" unique_id=720798395]
-motion_mirroring = Vector2(500, 12.63)
+motion_mirroring = Vector2(5034.975, 121.465)
 
 [node name="3" type="Sprite2D" parent="ParallaxBackground/ParallaxLayer2" unique_id=1509385391]
+texture_repeat = 2
 position = Vector2(246, 763)
 scale = Vector2(0.874204, 0.951267)
 texture = ExtResource("4_jjvhh")
+region_enabled = true
+region_rect = Rect2(0, 0, 5760, 324)
 
 [node name="ParallaxLayer3" type="ParallaxLayer" parent="ParallaxBackground" unique_id=1206442363]
-motion_mirroring = Vector2(1000, 0)
+visible = false
+motion_mirroring = Vector2(5001.42, 0)
 
 [node name="5" type="Sprite2D" parent="ParallaxBackground/ParallaxLayer3" unique_id=1363226080]
+texture_repeat = 2
 position = Vector2(265, 853)
 scale = Vector2(0.868056, 0.868056)
 texture = ExtResource("5_kry3j")
-
-[node name="ParallaxLayer5" type="ParallaxLayer" parent="ParallaxBackground" unique_id=1759756959]
-motion_mirroring = Vector2(1500, 0)
-
-[node name="2" type="Sprite2D" parent="ParallaxBackground/ParallaxLayer5" unique_id=1433562990]
-position = Vector2(110, 350)
-texture = ExtResource("7_6bp64")
-
-[node name="ParallaxLayer6" type="ParallaxLayer" parent="ParallaxBackground" unique_id=377086783]
-motion_mirroring = Vector2(700, 0)
-
-[node name="3" type="Sprite2D" parent="ParallaxBackground/ParallaxLayer6" unique_id=338958719]
-position = Vector2(427, 24)
-texture = ExtResource("8_ynf5e")
+region_enabled = true
+region_rect = Rect2(0, 0, 5760, 324)
 
 [node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=1710139789]
 
@@ -776,6 +773,7 @@ flat = true
 
 [node name="Stick" type="ColorRect" parent="." unique_id=1406447175]
 visible = false
+layout_mode = 0
 offset_left = 247.0
 offset_top = 549.0
 offset_right = 262.0
@@ -790,40 +788,45 @@ visible = false
 scroll_base_scale = Vector2(0.1, 0.1)
 
 [node name="ParallaxLayer" type="ParallaxLayer" parent="ParallaxBackground2" unique_id=1174794775]
-motion_mirroring = Vector2(500, 0)
+motion_mirroring = Vector2(5380.115, 0)
 
 [node name="1" type="Sprite2D" parent="ParallaxBackground2/ParallaxLayer" unique_id=2036197651]
+texture_repeat = 2
 position = Vector2(259, 478)
 scale = Vector2(0.934028, 2.98302)
 texture = ExtResource("12_fdnlq")
+region_enabled = true
+region_rect = Rect2(0, 0, 5760, 972)
 
 [node name="ParallaxLayer2" type="ParallaxLayer" parent="ParallaxBackground2" unique_id=1788928280]
-motion_mirroring = Vector2(800, 0)
+motion_mirroring = Vector2(5720.355, 0)
 
 [node name="2" type="Sprite2D" parent="ParallaxBackground2/ParallaxLayer2" unique_id=89417268]
-position = Vector2(108, 110)
+texture_repeat = 2
+position = Vector2(352, 776)
 texture = ExtResource("7_6bp64")
+region_enabled = true
+region_rect = Rect2(0, 0, 5760, 324)
 
 [node name="ParallaxLayer3" type="ParallaxLayer" parent="ParallaxBackground2" unique_id=1725440042]
-motion_mirroring = Vector2(1500, 0)
+motion_mirroring = Vector2(5760, 0)
 
 [node name="3" type="Sprite2D" parent="ParallaxBackground2/ParallaxLayer3" unique_id=765620473]
-position = Vector2(676, -51)
+texture_repeat = 2
+position = Vector2(309, 744)
 texture = ExtResource("8_ynf5e")
+region_enabled = true
+region_rect = Rect2(0, 0, 5760, 324)
 
 [node name="ParallaxLayer4" type="ParallaxLayer" parent="ParallaxBackground2" unique_id=1765654881]
-motion_mirroring = Vector2(600, 0)
+motion_mirroring = Vector2(5760, 0)
 
 [node name="3" type="Sprite2D" parent="ParallaxBackground2/ParallaxLayer4" unique_id=2016520662]
-position = Vector2(352, 397)
+texture_repeat = 2
+position = Vector2(119, 777)
 texture = ExtResource("8_ynf5e")
-
-[node name="ParallaxLayer5" type="ParallaxLayer" parent="ParallaxBackground2" unique_id=590548917]
-motion_mirroring = Vector2(700, 0)
-
-[node name="5" type="Sprite2D" parent="ParallaxBackground2/ParallaxLayer5" unique_id=1657312830]
-position = Vector2(212, 883)
-texture = ExtResource("13_jkdf5")
+region_enabled = true
+region_rect = Rect2(0, 0, 5760, 324)
 
 [node name="AnimatedSpriteBonus" type="AnimatedSprite2D" parent="." unique_id=1010534946]
 top_level = true
@@ -835,17 +838,25 @@ frame = 17
 frame_progress = 1.0
 speed_scale = 8.0
 
-[node name="AudioStreamPlayerHit" type="AudioStreamPlayer" parent="." unique_id=1683362248]
-stream = ExtResource("18_b3802")
-volume_db = -30.0
-
 [node name="XBonusLabel" type="Label" parent="." unique_id=1329905858]
-offset_left = -75.0
-offset_right = -35.0
+layout_mode = 0
+offset_left = -1000.0
+offset_right = -960.0
 offset_bottom = 60.0
 theme_override_colors/font_color = Color(1, 1, 1, 1)
 theme_override_font_sizes/font_size = 55
 text = "0"
+
+[node name="ColorRect" type="ColorRect" parent="." unique_id=1419802638]
+visible = false
+custom_minimum_size = Vector2(1920, 1280)
+layout_mode = 0
+offset_right = 1280.0
+offset_bottom = 720.0
+
+[node name="AudioStreamPlayerHit" type="AudioStreamPlayer" parent="." unique_id=1683362248]
+stream = ExtResource("18_b3802")
+volume_db = -30.0
 
 [node name="AudioStreamPlayerSwipe" type="AudioStreamPlayer" parent="." unique_id=453903184]
 stream = ExtResource("20_hibaj")
@@ -859,16 +870,106 @@ volume_db = -20.0
 stream = ExtResource("18_fevyy")
 volume_db = -20.0
 
-[node name="CanvasLayer2" type="CanvasLayer" parent="." unique_id=2109524105]
-layer = -100
+[node name="ParallaxBackground2_1" type="ParallaxBackground" parent="." unique_id=1423512126]
+layer = -50
+visible = false
+scroll_base_scale = Vector2(0.1, 0.1)
 
-[node name="ColorRect" type="ColorRect" parent="CanvasLayer2" unique_id=1715795183]
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-color = Color(0.019607844, 0.44313726, 0.7411765, 1)
+[node name="ParallaxLayer" type="ParallaxLayer" parent="ParallaxBackground2_1" unique_id=917447782]
+motion_mirroring = Vector2(5380.115, 0)
+
+[node name="1" type="Sprite2D" parent="ParallaxBackground2_1/ParallaxLayer" unique_id=294494704]
+texture_repeat = 2
+position = Vector2(259, 1444.405)
+scale = Vector2(-0.934, -2.983)
+texture = ExtResource("12_fdnlq")
+region_enabled = true
+region_rect = Rect2(0, 0, 5760, 324)
+
+[node name="ParallaxLayer2" type="ParallaxLayer" parent="ParallaxBackground2_1" unique_id=884032828]
+motion_mirroring = Vector2(5720.355, 0)
+
+[node name="2" type="Sprite2D" parent="ParallaxBackground2_1/ParallaxLayer2" unique_id=1575156517]
+texture_repeat = 2
+position = Vector2(294, 917)
+texture = ExtResource("7_6bp64")
+region_enabled = true
+region_rect = Rect2(0, 0, 5760, 324)
+
+[node name="ParallaxLayer3" type="ParallaxLayer" parent="ParallaxBackground2_1" unique_id=1584786587]
+motion_mirroring = Vector2(5760, 0)
+
+[node name="3" type="Sprite2D" parent="ParallaxBackground2_1/ParallaxLayer3" unique_id=2038058042]
+texture_repeat = 2
+position = Vector2(249, 866)
+texture = ExtResource("8_ynf5e")
+region_enabled = true
+region_rect = Rect2(0, 0, 5760, 324)
+
+[node name="ParallaxLayer4" type="ParallaxLayer" parent="ParallaxBackground2_1" unique_id=1769823904]
+motion_mirroring = Vector2(5760, 0)
+
+[node name="3" type="Sprite2D" parent="ParallaxBackground2_1/ParallaxLayer4" unique_id=2143791787]
+texture_repeat = 2
+position = Vector2(74, 856)
+texture = ExtResource("8_ynf5e")
+region_enabled = true
+region_rect = Rect2(0, 0, 5760, 324)
+
+[node name="ParallaxBackground_1" type="ParallaxBackground" parent="." unique_id=704398464]
+layer = -50
+follow_viewport_enabled = true
+scroll_base_scale = Vector2(0.175, 0.175)
+
+[node name="ParallaxLayer" type="ParallaxLayer" parent="ParallaxBackground_1" unique_id=1422248390]
+motion_mirroring = Vector2(5760, 0)
+
+[node name="1" type="Sprite2D" parent="ParallaxBackground_1/ParallaxLayer" unique_id=270419133]
+texture_repeat = 2
+position = Vector2(315, 1357.705)
+scale = Vector2(-1.094, -2.883)
+texture = ExtResource("3_8gbba")
+region_enabled = true
+region_rect = Rect2(0, 0, 5760, 324)
+
+[node name="ParallaxLayer2" type="ParallaxLayer" parent="ParallaxBackground_1" unique_id=2101979384]
+motion_mirroring = Vector2(5034.975, 0)
+
+[node name="3" type="Sprite2D" parent="ParallaxBackground_1/ParallaxLayer2" unique_id=437308586]
+texture_repeat = 2
+position = Vector2(246, 1041.495)
+scale = Vector2(0.874, -0.951)
+texture = ExtResource("4_jjvhh")
+region_enabled = true
+region_rect = Rect2(0, 0, 5760, 324)
+
+[node name="ParallaxLayer3" type="ParallaxLayer" parent="ParallaxBackground_1" unique_id=1666551220]
+visible = false
+motion_mirroring = Vector2(5001.42, 0)
+
+[node name="5" type="Sprite2D" parent="ParallaxBackground_1/ParallaxLayer3" unique_id=292690988]
+texture_repeat = 2
+position = Vector2(265, 977.795)
+scale = Vector2(0.868, -0.868)
+texture = ExtResource("5_kry3j")
+region_enabled = true
+region_rect = Rect2(0, 0, 5760, 204.315)
+
+[node name="ParallaxBackground_1_1" type="ParallaxBackground" parent="." unique_id=293762931]
+layer = -50
+follow_viewport_enabled = true
+scroll_base_scale = Vector2(0.175, 0.175)
+
+[node name="ParallaxLayer" type="ParallaxLayer" parent="ParallaxBackground_1_1" unique_id=736831096]
+motion_mirroring = Vector2(5760, 0)
+
+[node name="1" type="Sprite2D" parent="ParallaxBackground_1_1/ParallaxLayer" unique_id=1292958863]
+texture_repeat = 2
+position = Vector2(315, -491.305)
+scale = Vector2(-1.094, -2.883)
+texture = ExtResource("3_8gbba")
+region_enabled = true
+region_rect = Rect2(0, 0, 5760, 324)
 
 [connection signal="pressed" from="CanvasLayer/StartGameButton" to="." method="_on_start_game_button_pressed"]
 [connection signal="pressed" from="CanvasLayer/EndGamePanel/MarginContainer/HBoxContainer/ResetGameButton" to="." method="_on_reset_game_button_pressed"]

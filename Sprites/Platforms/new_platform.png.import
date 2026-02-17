@@ -2,22 +2,24 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://da03wb1i0a44n"
-path="res://.godot/imported/tree_platform.png-a700268b2e8bc236aee5de937d9522e6.ctex"
+uid="uid://dvsijk2ryn41b"
+path="res://.godot/imported/new_platform.png-ddef1e955640e043ad8b07dcc8fd63f9.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Sprites/Platforms/tree_platform.png"
-dest_files=["res://.godot/imported/tree_platform.png-a700268b2e8bc236aee5de937d9522e6.ctex"]
+source_file="res://Sprites/Platforms/new_platform.png"
+dest_files=["res://.godot/imported/new_platform.png-ddef1e955640e043ad8b07dcc8fd63f9.ctex"]
 
 [params]
 
 compress/mode=0
 compress/high_quality=false
 compress/lossy_quality=0.7
+compress/uastc_level=0
+compress/rdo_quality_loss=0.0
 compress/hdr_compression=1
 compress/normal_map=0
 compress/channel_pack=0
@@ -25,6 +27,10 @@ mipmaps/generate=false
 mipmaps/limit=-1
 roughness/mode=0
 roughness/src_normal=""
+process/channel_remap/red=0
+process/channel_remap/green=1
+process/channel_remap/blue=2
+process/channel_remap/alpha=3
 process/fix_alpha_border=true
 process/premult_alpha=false
 process/normal_map_invert_y=false
