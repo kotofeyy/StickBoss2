@@ -26,6 +26,7 @@ extends Control
 @onready var parallax_background: ParallaxBackground = $ParallaxBackground
 @onready var parallax_background_2: ParallaxBackground = $ParallaxBackground2
 @onready var parallax_background_2_1: ParallaxBackground = $ParallaxBackground2_1
+@onready var parallax_background_2_2: ParallaxBackground = $ParallaxBackground2_2
 @onready var parallax_background_1: ParallaxBackground = $ParallaxBackground_1
 @onready var parallax_background_1_1: ParallaxBackground = $ParallaxBackground_1_1
 
@@ -63,7 +64,6 @@ var language
 func _ready() -> void:
 	Bridge.platform.send_message("game_ready")
 	get_data()
-	print("platform - ", Bridge.platform.id)
 	language = Bridge.platform.language
 	TranslationServer.set_locale(language)
 	update_shop()
@@ -92,12 +92,12 @@ func _draw() -> void:
 
 
 func start_game() -> void:
-	print("authorization - ", Bridge.player.is_authorized) # bool
 	clear_platforms()
 	parallax_background.visible = false
 	parallax_background_1.visible = false
 	parallax_background_2.visible = false
 	parallax_background_2_1.visible = false
+	parallax_background_2_2.visible = false
 	parallax_background_1_1.visible = false
 	score = 0
 	get_data()
@@ -115,7 +115,7 @@ func start_game() -> void:
 	
 	match (randi_range(1,2)):
 		1: parallax_background.visible = true; parallax_background_1.visible = true; parallax_background_1_1.visible = true
-		2: parallax_background_2.visible = true; parallax_background_2_1.visible = true
+		2: parallax_background_2.visible = true; parallax_background_2_1.visible = true; parallax_background_2_2.visible = true
 	
 	platfrom_1 = platform_preload.instantiate()
 	platfrom_2 = platform_preload.instantiate()
